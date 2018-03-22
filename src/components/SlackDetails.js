@@ -5,7 +5,7 @@ import Field from './Field';
 // CapitalizedCamelCase. React interprets lower
 // components as HTML tags and will try to render as such
 // ignoring your component.
-function QuestionDetails (props) {
+function SlackDetails (props) {
   const {author = {}} = props;
   // To write JavaScript expression inside of JSX,
   // use {} like the {props.title} below.
@@ -20,11 +20,10 @@ function QuestionDetails (props) {
       <h2>{props.title}</h2>
       <p>{props.body}</p>
       <p>By {author.full_name}</p>
-      <Field name="View Count" value={props.view_count} />
       <Field name="Created At" value={props.created_at} />
       <Field name="Updated At" value={props.updated_at} />
     </div>
   );
 }
 
-export default QuestionDetails;
+export default SlackDetails;

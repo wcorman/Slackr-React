@@ -1,17 +1,27 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { Link } from 'react-router-dom';
 import { Slack } from '../lib/requests';
+import SlackNewPage from './SlackNewPage';
+import { Slider, Icon } from 'antd';
+import { Line, Circle } from 'rc-progress';
+
 
 // The React Component parent class is also available
 // as a property of the React default import object.
 class SlackIndexPage extends React.Component {
+
   constructor (props) {
     super(props)
 
     this.state = {
       slacks: [],
-      loading: true
-    }
+      loading: true,
+      value: 0,
+    };
+
+
 
     // When using a method as a callback, we must bind
     // this to otherwise we won't have access to any properties
@@ -24,17 +34,31 @@ class SlackIndexPage extends React.Component {
     this.addSlack = this.addSlack.bind(this);
   }
 
+  handleChange = (value) => {
+    this.setState({ value });
+  }
+
   componentDidMount () {
+    console.log(this.props.user.id)
+
     Slack
       .all()
       .then(
         slacks => {
+          console.log(slacks)
           this.setState({
             slacks: slacks,
             loading: false
           });
         }
       );
+  }
+  componentDidUpdate() {
+    console.log(this.state.slacks);
+    localStorage.setItem(
+      this.state.slacks,
+      JSON.stringify(this.state.slacks)
+    );
   }
 
   deleteSlack (event) {
@@ -63,7 +87,6 @@ class SlackIndexPage extends React.Component {
   addSlack (newSlack) {
     const {slacks} = this.state;
 
-    // ð hack because we don't have authors
     newSlack.author = {full_name: 'Dr. Zoidberg'}
     this.setState({
       slacks: [
@@ -75,6 +98,11 @@ class SlackIndexPage extends React.Component {
 
   render () {
     const { slacks, loading } = this.state;
+    const { max, min } = this.props;
+    const { value } = this.state;
+    const mid = ((max - min) / 2).toFixed(5);
+    const preColor = value >= mid ? '' : 'rgba(0, 0, 0, .45)';
+    const nextColor = value >= mid ? 'rgba(0, 0, 0, .45)' : '';
 
     if (loading) {
       return (
@@ -83,7 +111,7 @@ class SlackIndexPage extends React.Component {
           style={{margin: '0 1rem'}}
         >
           <h2>Slacks</h2>
-          <h4>Loading...</h4>
+          <h4>Loading Slacks...</h4>
         </main>
       )
     }
@@ -91,25 +119,54 @@ class SlackIndexPage extends React.Component {
     return (
       <main
         className="SlackIndexPage"
-        style={{margin: '0 1rem'}}
+        style={{
+          margin: '0 1rem',
+          width: '1000px'
+        }}
         >
+          <main style={{
+            textAlign: "center"
+          }}>
+          <SlackNewPage />
+          </main>
           <h2>Slacks</h2>
-          <ul>
+          <main style={{
+            margin: '0 1rem',
+            width: '1000px',
+            textAlign: 'center',
+            display: 'inline-block',
+          }}>
             {
-              slacks.map(
-                slack => (
-                  <li key={slack.id}>
-                    <Link to={`/slacks/${slack.id}`}>
-                      prod time: {slack.prod_time}
-                    </Link>
-                  </li>
+              Object.keys(slacks).map(
+                key => (
+
+                    <main style={{
+                      margin: '0 1rem',
+                      width: '210px',
+                      display: 'inline-block',
+                    }}>
+                      <Circle percent={slacks[key]} strokeWidth="3" strokeColor="deepskyblue" />
+                      {key}: {slacks[key]}
+                    </main>
+
+
+
                 )
               )
             }
-          </ul>
+          </main>
+          <main className="icon-wrapper">
+            <Icon style={{ color: preColor }} type="frown-o" />
+            <Slider {...this.props} onChange={this.handleChange} value={value} />
+            <Icon style={{ color: nextColor }} type="smile-o" />
+          </main>
+
+
         </main>
       )
   }
+
 }
+
 
 export default SlackIndexPage;

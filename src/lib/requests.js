@@ -1,10 +1,12 @@
 const DOMAIN = 'localhost:3000';
 const API_PREFIX = '/api/v1';
 const BASE_URL = `http://${DOMAIN}${API_PREFIX}`;
-const JWT = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjA3LCJmaXJzdF9uYW1lIjoiV2VzIiwibGFzdF9uYW1lIjoiQ29ybWFuIn0._Jo9YT_lcF60yn9M6_Dn34tGWoNmXiyDEiE_GYEupgs';
+
+function getJWT () {
+  return localStorage.getItem('jwt');
+}
 
 // HTTP REQUESTS
-
 
 const Slack = {
   all () {
@@ -12,7 +14,7 @@ const Slack = {
       `${BASE_URL}/slacks`,
       {
         headers: {
-          'Authorization': JWT
+          'Authorization': getJWT(),
         }
       }
     )
@@ -23,7 +25,7 @@ const Slack = {
       `${BASE_URL}/slacks/${id}`,
       {
         headers: {
-          'Authorization': JWT
+          'Authorization': getJWT()
         }
       }
     )
@@ -34,7 +36,7 @@ const Slack = {
       `${BASE_URL}/slacks`,
       {
         headers: {
-          'Authorization': JWT,
+          'Authorization': getJWT(),
           'Content-Type':'application/json'
         },
         method: 'POST',
@@ -45,9 +47,25 @@ const Slack = {
   }
 }
 
+const Token = {
+  create (params) {
+    return fetch(
+      `${BASE_URL}/tokens`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+      }
+    )
+      .then(res => res.json());
+  }
+}
+
 // export default Slack;
 // ð This named export. Unlike the default, it allows
 // to export multiple variables which must import by their
 // surround by braces.
 // `import { Slack, Token } from './lib/Slack'`
-export { Slack };
+export { Slack, Token };
