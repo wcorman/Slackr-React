@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import jwtDecode from 'jwt-decode';
 import {
   // When doing named imports, you can `as` to rename
@@ -12,6 +15,7 @@ import SlackShowPage from './SlackShowPage';
 import SlackIndexPage from './SlackIndexPage';
 import SlackNewPage from './SlackNewPage';
 import SignInPage from './SignInPage';
+import Trends from './Trends';
 import NavBar from './NavBar';
 import AuthRoute from './AuthRoute';
 
@@ -21,12 +25,12 @@ import AuthRoute from './AuthRoute';
 // component on the page with `ReactDOM.render()`.
 // For this application, the `App` serves that role.
 class App extends Component {
+
   constructor (props) {
     super(props);
 
     this.state = {
-      user: null
-
+      user: null,
     };
 
     this.signIn = this.signIn.bind(this);
@@ -94,6 +98,12 @@ class App extends Component {
               path="/slacks/:id"
               component={SlackShowPage}
             />
+            <Route
+              user={user}
+              isAuthenticated={this.isSignedIn()}
+              path="/slacks/trends"
+              component={Trends}
+            />
             {/* <Route path="/sign_in" component={SignInPage} /> */}
             <Route
               path="/sign_in"
@@ -107,6 +117,7 @@ class App extends Component {
               }
             />
           </Switch>
+
         </div>
       </Router>
     )

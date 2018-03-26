@@ -15,6 +15,7 @@ function NavBar (props) {
       <NavLink exact to="/">Home</NavLink>
       <NavLink exact to="/slacks/new">New Slack</NavLink>
       <NavLink exact to="/slacks">Slacks</NavLink>
+      <NavLink exact to="/slacks/trends">Trends</NavLink>
       {
         user ? (
           [ <span key="1">Hello, {user.first_name}</span>

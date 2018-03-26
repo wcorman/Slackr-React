@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-sticky-header/styles.css';
+
 
 ReactDOM.render(
   // JSX tags are translated into React.createElement()

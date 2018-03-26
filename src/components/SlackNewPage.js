@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SlackForm from './SlackForm';
 import { Slack } from '../lib/requests';
+import { Slider, Icon } from 'antd';
 
 class SlackNewPage extends Component {
   constructor (props) {
@@ -45,7 +46,7 @@ class SlackNewPage extends Component {
         className="SlackNewPage"
         style={{margin: '0 1rem'}}
       >
-        <h1>New Slack</h1>
+        <h1>How was your day?</h1>
         <SlackForm
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}

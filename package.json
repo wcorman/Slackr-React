@@ -4,13 +4,22 @@
   "private": true,
   "dependencies": {
     "antd": "^3.3.1",
+    "bootstrap": "^4.0.0",
     "jwt-decode": "^2.2.0",
+    "material-ui": "^0.20.0",
+    "moment": "^2.21.0",
+    "nw-react-slider": "^2.0.1",
     "rc-progress": "^2.2.5",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-progressbar.js": "^0.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "react-slick": "^0.22.2",
+    "react-sticky-header": "^0.1.9",
+    "reactstrap": "^5.0.0-beta.3",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

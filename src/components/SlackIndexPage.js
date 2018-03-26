@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Slack } from '../lib/requests';
 import SlackNewPage from './SlackNewPage';
-import { Slider, Icon } from 'antd';
-import { Line, Circle } from 'rc-progress';
-
+import Averages from './Averages';
+// import { Slider, Icon } from 'antd';
+import { Line } from 'rc-progress';
 
 // The React Component parent class is also available
 // as a property of the React default import object.
@@ -20,8 +20,6 @@ class SlackIndexPage extends React.Component {
       loading: true,
       value: 0,
     };
-
-
 
     // When using a method as a callback, we must bind
     // this to otherwise we won't have access to any properties
@@ -98,11 +96,7 @@ class SlackIndexPage extends React.Component {
 
   render () {
     const { slacks, loading } = this.state;
-    const { max, min } = this.props;
-    const { value } = this.state;
-    const mid = ((max - min) / 2).toFixed(5);
-    const preColor = value >= mid ? '' : 'rgba(0, 0, 0, .45)';
-    const nextColor = value >= mid ? 'rgba(0, 0, 0, .45)' : '';
+    var moment = require('moment');
 
     if (loading) {
       return (
@@ -121,52 +115,69 @@ class SlackIndexPage extends React.Component {
         className="SlackIndexPage"
         style={{
           margin: '0 1rem',
-          width: '1000px'
+          width: '100%'
         }}
         >
           <main style={{
             textAlign: "center"
           }}>
-          <SlackNewPage />
-          </main>
-          <h2>Slacks</h2>
-          <main style={{
-            margin: '0 1rem',
-            width: '1000px',
-            textAlign: 'center',
-            display: 'inline-block',
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between'
           }}>
-            {
-              Object.keys(slacks).map(
-                key => (
+          <SlackNewPage />
+          <Averages />
 
-                    <main style={{
-                      margin: '0 1rem',
-                      width: '210px',
-                      display: 'inline-block',
-                    }}>
-                      <Circle percent={slacks[key]} strokeWidth="3" strokeColor="deepskyblue" />
-                      {key}: {slacks[key]}
-                    </main>
-
-
-
-                )
-              )
-            }
+          </div>
           </main>
-          <main className="icon-wrapper">
-            <Icon style={{ color: preColor }} type="frown-o" />
-            <Slider {...this.props} onChange={this.handleChange} value={value} />
-            <Icon style={{ color: nextColor }} type="smile-o" />
-          </main>
+          <hr/>
 
+          <h2>Slacks</h2>
 
-        </main>
-      )
-  }
+          <ul>
+           {
+             slacks.map(
+               slack => (
+                 <li key={slack.id}>
+                   <main style={{
+                     width: '85%',
+                     paddingBottom: '25px',
+                     border: 'solid',
+                     borderRadius: '10px',
+                     borderWidth: '2px',
+                     borderColor: 'grey',
+                     marginBottom: '10px',
+                     padding: '20px'
 
+                   }}>
+                   <div style={{
+                     display: ''
+                   }}>
+                   <h4>{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
+                   Unproductive time
+                     <Line percent={slack.unprod_time} strokeWidth="1" strokeColor='grey'></Line>
+                     <br/>
+                     </div>
+                     Productive time
+                     <Line percent={slack.prod_time} strokeWidth="1" strokeColor='purple'></Line>
+                     <br/>
+                     Sleep time
+                     <Line percent={slack.sleep_time} strokeWidth="1" strokeColor='deepskyblue'></Line>
+                     <br/>
+                     Happy level
+                     <Line percent={slack.happy} strokeWidth="1" strokeColor='palegreen'></Line>
+                   </main>
+
+                 </li>
+               )
+             )
+           }
+         </ul>
+       </main>
+     )
+ }
 }
+
 
 
 export default SlackIndexPage;

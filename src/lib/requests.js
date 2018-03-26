@@ -20,6 +20,28 @@ const Slack = {
     )
       .then(res => res.json());
   },
+  averages () {
+    return fetch(
+      `${BASE_URL}/slacks/averages`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+        }
+      }
+    )
+      .then(res => res.json());
+  },
+  trends () {
+    return fetch(
+      `${BASE_URL}/slacks/`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+        }
+      }
+    )
+      .then(res => res.json());
+  },
   one (id) {
     return fetch(
       `${BASE_URL}/slacks/${id}`,

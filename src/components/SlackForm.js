@@ -1,9 +1,9 @@
 import React from 'react'
 import { Slider, Icon } from 'antd';
-import IconSlider from './slider'
+import { Button } from 'reactstrap';
 
 function SlackForm (props) {
-  // props.onSubmit
+
   const {onSubmit = () => {}} = props
 
   const handleSubmit = event => {
@@ -21,36 +21,45 @@ function SlackForm (props) {
       sleep_time: formData.get('sleepTime'),
       happy: formData.get('happy')
       }
-    });
+    }
+  );
   }
 
   return (
+
     <form
       className="SlackForm"
       onSubmit={handleSubmit}
+      style={{
+        width: '300px'
+
+      }}
     >
+
       <div>
         <label htmlFor="prodTime">Productive Time</label> <br />
-        <input name="prodTime" id="prodTime" />
+        <input type='number' name="prodTime" id="prodTime" />
       </div>
 
       <div>
         <label htmlFor="unprodTime">Unproductive Time</label> <br />
-        <input name="unprodTime" id="unprodTime"/>
+        <input type='number' name="unprodTime" id="unprodTime"/>
       </div>
 
       <div>
         <label htmlFor="sleepTime">Sleep Time</label> <br />
-        <input name="sleepTime" id="sleepTime"/>
+        <input type='number' name="sleepTime" id="sleepTime"/>
       </div>
 
       <div>
         <label htmlFor="happy">Happy level</label> <br />
-        <input name="happy" id="happy"/>
+        <input type='number' name="happy" id="happy"/>
       </div>
 
-      <div>
-        <input type="submit" value="Submit"/>
+      <div style={{
+        marginTop: '10px'
+      }}>
+        <Button color="primary" type="submit">Submit</Button>{' '}
       </div>
     </form>
   )
