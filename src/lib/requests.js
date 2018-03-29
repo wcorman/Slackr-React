@@ -33,7 +33,18 @@ const Slack = {
   },
   trends () {
     return fetch(
-      `${BASE_URL}/slacks/`,
+      `${BASE_URL}/slacks/trends`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+        }
+      }
+    )
+      .then(res => res.json());
+  },
+  dates () {
+    return fetch(
+      `${BASE_URL}/slacks/dates`,
       {
         headers: {
           'Authorization': getJWT(),
@@ -70,24 +81,45 @@ const Slack = {
 }
 
 const Token = {
-  create (params) {
-    return fetch(
-      `${BASE_URL}/tokens`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(params)
+  create(params) {
+    return fetch(`${BASE_URL}/tokens`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(params)
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return { error: 'Username and Password do not match' };
       }
-    )
-      .then(res => res.json());
+    });
   }
-}
+};
+
+
+const User = {
+  create(params) {
+    return fetch(`${BASE_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user: params })
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return { error: 'Could not create the user' };
+      }
+    });
+  }
+};
 
 // export default Slack;
 // ð This named export. Unlike the default, it allows
 // to export multiple variables which must import by their
 // surround by braces.
 // `import { Slack, Token } from './lib/Slack'`
-export { Slack, Token };
+export { Slack, Token, User};

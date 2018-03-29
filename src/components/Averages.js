@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Slack } from '../lib/requests';
 import { Circle } from 'rc-progress';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 
 class Averages extends React.Component {
@@ -30,7 +30,6 @@ class Averages extends React.Component {
   }
 
   render () {
-    const { slacks } = this.state;
 
     return (
 
@@ -38,6 +37,7 @@ class Averages extends React.Component {
         className="Averages"
         style={{
           margin: '0 1rem',
+          marginRight: '60px',
           width: '1200px'
         }}
       >
@@ -67,7 +67,7 @@ class Averages extends React.Component {
             margin: '15px',
           }}
           >
-            Sleep Time: {Math.round((this.state.averages.sleep_time) * 100 /100)}%
+            Sleep Quality: {Math.round((this.state.averages.sleep_time) * 100 /100)}%
           </Col>
 
           <Col style={{
@@ -96,6 +96,7 @@ class Averages extends React.Component {
             trailWidth='2'
             strokeLinecap="round"
             strokeColor="palegreen"
+            trailColor='rgba(255, 255, 255, 0.3)'
           />
         </Col>
 
@@ -109,7 +110,8 @@ class Averages extends React.Component {
             strokeWidth="5"
             trailWidth='2'
             strokeLinecap="round"
-            strokeColor="palegreen"
+            strokeColor="tomato"
+            trailColor='rgba(255, 255, 255, 0.3)'
           />
         </Col>
 
@@ -123,7 +125,8 @@ class Averages extends React.Component {
             strokeWidth="5"
             trailWidth='2'
             strokeLinecap="round"
-            strokeColor="palegreen"
+            strokeColor="deepskyblue"
+            trailColor='rgba(255, 255, 255, 0.3)'
           />
         </Col>
 
@@ -137,7 +140,8 @@ class Averages extends React.Component {
             strokeWidth="5"
             trailWidth='2'
             strokeLinecap="round"
-            strokeColor="palegreen"
+            strokeColor="#ffff66"
+            trailColor='rgba(255, 255, 255, 0.3)'
           />
         </Col>
 

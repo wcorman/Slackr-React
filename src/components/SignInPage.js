@@ -39,6 +39,7 @@ class SignInPage extends Component {
         style={{margin: '0 1rem'}}
       >
         <h2>Sign In</h2>
+        <br/>
         <form onSubmit={this.createToken}>
           <div>
             <label htmlFor='email'>Email</label> <br />
@@ -49,6 +50,7 @@ class SignInPage extends Component {
             <label htmlFor='password'>Password</label> <br />
             <input type='password' id='password' name='password' />
           </div>
+          <br/>
 
           <div>
             <input type='submit' value='Sign In'/>

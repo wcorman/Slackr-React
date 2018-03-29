@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { Link } from 'react-router-dom';
 import { Slack } from '../lib/requests';
@@ -19,6 +18,7 @@ class SlackIndexPage extends React.Component {
       slacks: [],
       loading: true,
       value: 0,
+      title: 'App title',
     };
 
     // When using a method as a callback, we must bind
@@ -28,6 +28,7 @@ class SlackIndexPage extends React.Component {
     // `.bind()` is a method of functions that effectively
     // creates new function that is copy of the function
     // where `this` is bound permanently.
+    this.onClick = this.onClick.bind(this);
     this.deleteSlack = this.deleteSlack.bind(this);
     this.addSlack = this.addSlack.bind(this);
   }
@@ -94,6 +95,12 @@ class SlackIndexPage extends React.Component {
     })
   }
 
+  onClick() {
+    this.setState({
+      title: 'Newapp title'
+    })
+  }
+
   render () {
     const { slacks, loading } = this.state;
     var moment = require('moment');
@@ -127,18 +134,16 @@ class SlackIndexPage extends React.Component {
           }}>
           <SlackNewPage />
           <Averages />
-
           </div>
           </main>
           <hr/>
 
-          <h2>Slacks</h2>
+          <h2 style={{  color: 'white'}}>Slacks</h2>
 
-          <ul>
            {
              slacks.map(
                slack => (
-                 <li key={slack.id}>
+                 <div key={slack.id}>
                    <main style={{
                      width: '85%',
                      paddingBottom: '25px',
@@ -146,38 +151,42 @@ class SlackIndexPage extends React.Component {
                      borderRadius: '10px',
                      borderWidth: '2px',
                      borderColor: 'grey',
+                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                      marginBottom: '10px',
-                     padding: '20px'
+                     padding: '20px',
+                     color: 'white'
 
                    }}>
                    <div style={{
-                     display: ''
+                     textAlign: 'center'
                    }}>
-                   <h4>{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
-                   Unproductive time
-                     <Line percent={slack.unprod_time} strokeWidth="1" strokeColor='grey'></Line>
+                   <h4 onClick={this.onClick} >{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
+                 </div>
+
+                      <div>
+                    <p className='LineText'>Productive time</p>
+                     <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='palegreen'></Line>
                      <br/>
+                      </div>
+                      <div>
+                    <p className='LineText'>Unproductive time</p>
+                      <Line className='Line' percent={slack.unprod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='tomato'></Line>
+                      <br/>
                      </div>
-                     Productive time
-                     <Line percent={slack.prod_time} strokeWidth="1" strokeColor='purple'></Line>
+                    <p className='LineText'>Sleep time</p>
+                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='deepskyblue'></Line>
                      <br/>
-                     Sleep time
-                     <Line percent={slack.sleep_time} strokeWidth="1" strokeColor='deepskyblue'></Line>
-                     <br/>
-                     Happy level
-                     <Line percent={slack.happy} strokeWidth="1" strokeColor='palegreen'></Line>
+                    <p className='LineText'>Happy Level</p>
+                     <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='#ffff66'></Line>
                    </main>
 
-                 </li>
+                 </div>
                )
              )
            }
-         </ul>
        </main>
      )
  }
 }
-
-
 
 export default SlackIndexPage;

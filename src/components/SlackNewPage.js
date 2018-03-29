@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SlackForm from './SlackForm';
 import { Slack } from '../lib/requests';
-import { Slider, Icon } from 'antd';
 
 class SlackNewPage extends Component {
   constructor (props) {

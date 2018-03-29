@@ -12,17 +12,21 @@ function NavBar (props) {
   return (
     <nav className="NavBar" style={{height:'50px'}}>
       <img src="./s-logo.png" style={{height:'42%'}} alt=""/>
-      <NavLink exact to="/">Home</NavLink>
-      <NavLink exact to="/slacks/new">New Slack</NavLink>
       <NavLink exact to="/slacks">Slacks</NavLink>
-      <NavLink exact to="/slacks/trends">Trends</NavLink>
+      <NavLink exact to="/trends">Trends</NavLink>
       {
         user ? (
           [ <span key="1">Hello, {user.first_name}</span>
           , <a key="2" href="/sign_out" onClick={handleSignOut}>Sign Out</a>
           ]
         ) : (
-          <NavLink exact to="/sign_in">Sign In</NavLink>
+          <div>
+          <NavLink style={{
+            marginRight:"13px"
+          }} exact to="/sign_in">Sign In</NavLink>
+
+          <NavLink exact to="/sign_up">Sign Up</NavLink>
+          </div>
         )
       }
       <CurrentDateTime />

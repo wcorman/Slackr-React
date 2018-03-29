@@ -36,18 +36,24 @@ function SlackForm (props) {
       }}
     >
 
-      <div>
+      <div style={{
+        marginBottom:'10px'
+      }}>
         <label htmlFor="prodTime">Productive Time</label> <br />
         <input type='number' name="prodTime" id="prodTime" />
       </div>
 
-      <div>
+      <div style={{
+        marginBottom:'10px'
+      }}>
         <label htmlFor="unprodTime">Unproductive Time</label> <br />
         <input type='number' name="unprodTime" id="unprodTime"/>
       </div>
 
-      <div>
-        <label htmlFor="sleepTime">Sleep Time</label> <br />
+      <div style={{
+        marginBottom:'10px'
+      }}>
+        <label htmlFor="sleepTime">Sleep Quality</label> <br />
         <input type='number' name="sleepTime" id="sleepTime"/>
       </div>
 

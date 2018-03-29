@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import jwtDecode from 'jwt-decode';
 import {
@@ -13,8 +11,8 @@ import {
 
 import SlackShowPage from './SlackShowPage';
 import SlackIndexPage from './SlackIndexPage';
-import SlackNewPage from './SlackNewPage';
 import SignInPage from './SignInPage';
+import SignUpPage from './SignUpPage';
 import Trends from './Trends';
 import NavBar from './NavBar';
 import AuthRoute from './AuthRoute';
@@ -85,23 +83,27 @@ class App extends Component {
               path="/slacks"
               component={SlackIndexPage}
             />
-            {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
-            <Route
+            <AuthRoute
               user={user}
               isAuthenticated={this.isSignedIn()}
-              path="/slacks/new"
-              component={SlackNewPage}
+              exact
+              path="/"
+              component={SlackIndexPage}
             />
+            {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
+
             <Route
               user={user}
               isAuthenticated={this.isSignedIn()}
+              exact
               path="/slacks/:id"
               component={SlackShowPage}
             />
-            <Route
+            <AuthRoute
               user={user}
               isAuthenticated={this.isSignedIn()}
-              path="/slacks/trends"
+              exact
+              path="/trends"
               component={Trends}
             />
             {/* <Route path="/sign_in" component={SignInPage} /> */}
@@ -115,6 +117,10 @@ class App extends Component {
                   />
                 )
               }
+            />
+            <Route
+              path="/sign_up"
+              render={props => <SignUpPage {...props} onSignUp={this.signIn} />}
             />
           </Switch>
 
