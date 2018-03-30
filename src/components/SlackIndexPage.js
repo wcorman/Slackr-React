@@ -7,6 +7,7 @@ import Averages from './Averages';
 // import { Slider, Icon } from 'antd';
 import { Line } from 'rc-progress';
 
+
 // The React Component parent class is also available
 // as a property of the React default import object.
 class SlackIndexPage extends React.Component {

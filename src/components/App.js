@@ -83,6 +83,13 @@ class App extends Component {
               path="/slacks"
               component={SlackIndexPage}
             />
+            {/* <AuthRoute
+              user={user}
+              isAuthenticated={this.isSignedIn()}
+              exact
+              path="/slacks"
+              component={SlackNewPage}
+            /> */}
             <AuthRoute
               user={user}
               isAuthenticated={this.isSignedIn()}

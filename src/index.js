@@ -5,6 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-sticky-header/styles.css';
+import 'react-rangeslider/lib/index.css'
+
 
 
 ReactDOM.render(

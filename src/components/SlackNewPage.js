@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SlackForm from './SlackForm';
+import Sliders from './Sliders';
 import { Slack } from '../lib/requests';
 
 class SlackNewPage extends Component {
@@ -14,6 +14,7 @@ class SlackNewPage extends Component {
   }
 
   createSlack (slackParams) {
+    debugger
     Slack
       .create(slackParams)
       .then(data => {
@@ -29,12 +30,11 @@ class SlackNewPage extends Component {
         } else {
           // const id = data.id
           const { id } = data;
-
           // Components rendered by the <Route /> component
           // gain access to a .history than can be used to manipulate
           // history. Using allows to redirect a user to
           // a different rendering whichever component is there.
-          this.props.history.push(`/slacks/${id}`);
+          // this.props.history.push(`/slacks/${id}`);
         }
       })
   }
@@ -48,7 +48,7 @@ class SlackNewPage extends Component {
               }}
       >
         <h2>How was your day?</h2>
-        <SlackForm
+        <Sliders
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}
         />
