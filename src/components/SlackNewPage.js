@@ -43,9 +43,11 @@ class SlackNewPage extends Component {
     return (
       <main
         className="SlackNewPage"
-        style={{margin: '0 1rem'}}
+        style={{margin: '0 1rem',
+                width: '450px'
+              }}
       >
-        <h1>How was your day?</h1>
+        <h2>How was your day?</h2>
         <SlackForm
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}

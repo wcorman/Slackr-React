@@ -10,78 +10,99 @@ class Trends extends React.Component {
     super(props);
 
     this.state = {
-      chartData:{
-        labels: ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
-
-      datasets:[
-        {
-          label: 'Unporductive Time',
-          data: [213, 517, 213, 533, 534, 283, 213, 591, 391, 126, 210, 474, 388],
-          backgroundColor:[
-            'rgba(255, 99, 132, 0.1)'
-          ],
-          borderColor: 'tomato',
-        },
-        {
-          label: 'Productive Time',
-          data: [243, 457, 223, 713, 354, 831, 131, 591, 911, 116, 110, 741, 188],
-          backgroundColor:[
-            'rgba(155, 206, 86, 0.1)'
-          ],
-
-          borderColor: 'palegreen'
-        },
-        {
-          label: 'Sleep Quality',
-          data: [143, 557, 123, 413, 254, 531, 431, 791, 411, 316, 210, 941, 388],
-          backgroundColor:[
-            'rgba(54, 162, 235, 0.1)'
-          ],
-          borderColor: 'deepskyblue'
-        },
-        {
-          label: 'Happy Level',
-          data: [343, 457, 253, 643, 454, 591, 631, 681, 711, 786, 810, 891, 999],
-          backgroundColor:[
-            'rgba(255, 206, 86, 0.1)'
-          ],
-          borderColor: '#ffff66'
-        }
-      ],
+      chartData:{},
       slacks: [],
       validationErrors: [],
       trends: {},
-      dates: {}
-      },
     };
   }
 
   componentDidMount () {
     // console.log(this.props.user.id)
+    var moment = require('moment');
 
     Slack
       .trends()
       .then(
         trendsObject => {
-          console.log(trendsObject)
+
+          const dateArray = []
+            trendsObject.forEach(function(date) {
+              const dateHuman = date.created_at.slice(0,-14)
+                dateArray.push(dateHuman)
+                });
+                console.log(dateArray);
+
+          const prodArray = []
+            trendsObject.forEach(function(prod) {
+                prodArray.push(prod.prod_time)
+                });
+                console.log(prodArray);
+
+          const unprodArray = []
+            trendsObject.forEach(function(unprod) {
+                unprodArray.push(unprod.unprod_time)
+                });
+                console.log(unprodArray);
+
+          const sleepArray = []
+            trendsObject.forEach(function(sleep) {
+                sleepArray.push(sleep.sleep_time)
+                });
+                console.log(sleepArray);
+
+          const happyArray = []
+            trendsObject.forEach(function(happy) {
+                happyArray.push(happy.happy)
+                });
+                console.log(happyArray);
+
           this.setState({
+
             trends: trendsObject,
             loading: false,
+            chartData:{
+              labels: dateArray,
+
+            datasets:[
+              {
+                label: 'Unporductive Time',
+                data: unprodArray,
+                backgroundColor:[
+                  'rgba(255, 99, 132, 0.1)'
+                ],
+                borderColor: 'tomato',
+              },
+              {
+                label: 'Productive Time',
+                data: prodArray,
+                backgroundColor:[
+                  'rgba(155, 206, 86, 0.1)'
+                ],
+
+                borderColor: 'palegreen'
+              },
+              {
+                label: 'Sleep Quality',
+                data: sleepArray,
+                backgroundColor:[
+                  'rgba(54, 162, 235, 0.1)'
+                ],
+                borderColor: 'deepskyblue'
+              },
+              {
+                label: 'Happy Level',
+                data: happyArray,
+                backgroundColor:[
+                  'rgba(255, 206, 86, 0.1)'
+                ],
+                borderColor: '#ffff66'
+              }
+            ],
+          }
           });
         }
       );
-
-      Slack
-        .dates()
-        .then(
-          dates => {
-            console.log('testing:'+dates)
-            this.setState({
-              dates: dates,
-              loading: false
-            });
-          }
-        );
     }
 
     static defaultProps = {
@@ -93,7 +114,8 @@ class Trends extends React.Component {
       render () {
         const { trends } = this.state;
         const { dates } = this.state;
-        console.log(dates)
+        const username = this.props.user.first_name+' '+this.props.user.last_name+`'s productivity trend`
+
         return (
           <div className="chart">
             <Line
@@ -102,16 +124,18 @@ class Trends extends React.Component {
             	options={{
                 title:{
                  display:this.props.displayTitle,
-                 text:'Example trend for User',
+                 text: username,
                  fontSize:30,
                  fontColor: 'white',
                },
-               legend:{
-                 display:true,
-                 position:'bottom',
-                 fontColor: 'white',
-
-               },
+               legend: {
+                display: true,
+                position: 'bottom',
+                fontColor: 'white',
+                labels: {
+                    fontColor: '#fff'
+                  }
+                },
                scales: {
                 yAxes: [{
                     ticks: {
