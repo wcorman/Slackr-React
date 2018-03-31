@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logosvg.svg'
+import logoShadow from './logosvgShadow.svg'
+import logoUnderline from './logo_underline.png'
 import SignInPage from './SignInPage'
+import SignUpPage from './SignUpPage'
 import { Row, Col } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { Collapse } from 'antd';
 import 'antd/dist/antd.css';
 import { Token } from '../lib/requests';
+import { NavLink } from 'react-router-dom';
 
 
 class LandingPage extends React.Component {
@@ -32,41 +35,23 @@ class LandingPage extends React.Component {
       console.log(key);
     }
 
-    const text = `
-      A dog is a type of domesticated animal.
-      Known for its loyalty and faithfulness,
-      it can be found as a welcome guest in many households across the world.
-    `;
     const inputWidth = '75%'
     return (
 
-        <div style={{width:'63vw'}} className="centered">
+        <div style={{width:'63vw', minWidth:'250px',}} className="centered">
           <img style={{
             zIndex: '-1',
-            // height: '100%',
             width: '90%',
+            minWidth: '150px',
             height: 'auto',
-            position: 'absolute',
-            top: '-265px',
-            // left: '-400px',
-          }} src ={logo} alt="Slackr Logo"/>
-        <div style={{
-          zIndex: '-1',
-          width: '75%',
-          height: 'auto',
-          opacity: '0.8',
-          fontFamily: 'Patua One',
-          fontSize: '25px',
-          position: 'absolute',
-          top: '-30px',
-          // left: '95px',
-        }}>
-          <Collapse  onChange={callback}>
+          }} src ={logoShadow} alt="Slackr Logo"/>
+
+          <Collapse style={{alignContent:'center', fontSize:'20px', marginBottom: '20px'}}  onChange={callback}>
             <Panel  header="Sign In" key="1">
               <SignInPage props={this.props.history}/>
             </Panel>
           </Collapse>
-        </div>
+          <NavLink style={{color:'#15fbff', fontSize:'20px', fontFamily:'Roboto'}} className='' exact to="/sign_up">New to Slackr? Sign up here...</NavLink>
 
       </div>
 

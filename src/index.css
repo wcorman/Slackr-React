@@ -19,6 +19,7 @@ input {
   border-radius: 8px;
   opacity: 0.8;
 }
+
 h1 {
   font-family: 'Patua One', cursive;
   color: white;
@@ -32,10 +33,20 @@ p {
   font-family: 'Patua One', cursive;
 }
 
+.signUpInput {
+    width: 78%;
+    min-width: 220px;
+    color: black;
+    margin-bottom: 23px;
+}
+
 .logo {
   float: left;
 }
 
+.alert {
+  color:red
+}
 
 .headings {
   font-family: 'Patua One', cursive;
@@ -56,6 +67,13 @@ p {
 position: fixed;
 top: 50%;
 left: 50%;
+text-align: center;
+font-weight: bold;
+align-content: center;
+white-space: nowrap;
+overflow: hidden;
+
+font-family: 'Patua One';
 /* bring your own prefixes */
 transform: translate(-50%, -50%);
 }

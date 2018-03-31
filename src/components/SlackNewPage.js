@@ -44,6 +44,7 @@ class SlackNewPage extends Component {
       <main
         className="SlackNewPage"
         style={{margin: '0 1rem',
+                marginTop: '10px',
                 width: '450px'
               }}
       >

@@ -139,7 +139,7 @@ class SlackIndexPage extends React.Component {
           </main>
           <hr/>
 
-          <h2 className='headings' style={{  color: 'white'}}>Recent Slacks</h2>
+          <h2 className='headings' style={{  color: 'white', marginTop:'15px', marginLeft:'16px'}}>Recent Slacks</h2>
 
            {
              slacks.map(

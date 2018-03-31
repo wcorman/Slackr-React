@@ -24,8 +24,8 @@ class CurrentDateTime extends Component {
     var options = { formatMatcher: 'hour' }
 
     return (
-      <span className="CurrentDateTime">
-        { this.state.dateTime.toLocaleDateString() } { this.state.dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }
+      <span className="CurrentDateTime" style={{fontFamily:'Patua One'}}>
+        { this.state.dateTime.toLocaleDateString() }
       </span>
     )
   }

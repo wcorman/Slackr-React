@@ -84,7 +84,7 @@ class App extends Component {
               path="/slacks"
               component={SlackIndexPage}
             />
-            
+
             <Route
               exact
               path="/"
@@ -106,8 +106,8 @@ class App extends Component {
               path="/trends"
               component={Trends}
             />
-            <Route path="/sign_in" component={SignInPage} />
-            <Route
+            {/* <Route path="/sign_in" component={SignInPage} /> */}
+            {/* <Route
               path="/sign_in"
               render={
                 props => (
@@ -117,7 +117,7 @@ class App extends Component {
                   />
                 )
               }
-            />
+            /> */}
             <Route
               path="/sign_up"
               render={props => <SignUpPage {...props} onSignUp={this.signIn} />}

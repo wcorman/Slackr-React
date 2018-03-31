@@ -3,7 +3,6 @@ import { Button } from 'reactstrap';
 import Slider from 'react-rangeslider'
 import SlackForm from './SlackForm';
 import { Row, Col } from 'reactstrap';
-import prodlogo from './logosvg2.svg'
 
 // import 'react-rangeslider/lib/index.css'
 
