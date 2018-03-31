@@ -13,6 +13,7 @@ import SlackShowPage from './SlackShowPage';
 import SlackIndexPage from './SlackIndexPage';
 import SignInPage from './SignInPage';
 import SignUpPage from './SignUpPage';
+import LandingPage from './LandingPage';
 import Trends from './Trends';
 import NavBar from './NavBar';
 import AuthRoute from './AuthRoute';
@@ -83,19 +84,11 @@ class App extends Component {
               path="/slacks"
               component={SlackIndexPage}
             />
-            {/* <AuthRoute
-              user={user}
-              isAuthenticated={this.isSignedIn()}
-              exact
-              path="/slacks"
-              component={SlackNewPage}
-            /> */}
-            <AuthRoute
-              user={user}
-              isAuthenticated={this.isSignedIn()}
+            
+            <Route
               exact
               path="/"
-              component={SlackIndexPage}
+              component={LandingPage}
             />
             {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
 
@@ -113,7 +106,7 @@ class App extends Component {
               path="/trends"
               component={Trends}
             />
-            {/* <Route path="/sign_in" component={SignInPage} /> */}
+            <Route path="/sign_in" component={SignInPage} />
             <Route
               path="/sign_in"
               render={

@@ -47,7 +47,7 @@ class SlackNewPage extends Component {
                 width: '450px'
               }}
       >
-        <h2>How was your day?</h2>
+        <h2 className='headings'>How was your day?</h2>
         <Sliders
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}

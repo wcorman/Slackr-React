@@ -11,7 +11,8 @@ function SignUpPage(props) {
       first_name: formData.get('first_name'),
       last_name: formData.get('last_name'),
       email: formData.get('email'),
-      password: formData.get('password')
+      password: formData.get('password'),
+      password_confirmation: formData.get('password_confirmation')
     }).then(data => {
       if (!data.error) {
         const jwt = data.jwt;
@@ -51,6 +52,11 @@ function SignUpPage(props) {
           <label htmlFor="password">Password</label>
           <br/>
           <input type="password" name="password" id="password" />
+        </div>
+        <div>
+          <label htmlFor="password_confirmation">Confirm Password</label>
+          <br/>
+          <input type="password" name="password_confirmation" id="password_confirmation" />
         </div>
         <br/>
 

@@ -153,8 +153,6 @@ class Trends extends React.Component {
 
             	}}
             />
-
-            <h2>Dates</h2>
           </div>
         )
       }

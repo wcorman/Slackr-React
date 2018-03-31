@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 0px;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -13,24 +13,51 @@ main {
 }
 label {
 color: white;
-font-family: 'Roboto', sans-serif;
-
+font-family: 'Patua One', cursive;
 }
 input {
   border-radius: 8px;
   opacity: 0.8;
 }
 h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Patua One', cursive;
   color: white;
 }
 h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Patua One', cursive;
   color: white;
 }
 p {
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Patua One', cursive;
+}
+
+.logo {
+  float: left;
+}
+
+
+.headings {
+  font-family: 'Patua One', cursive;
+
+}
+
+.navLinks {
+  font-family: 'Patua One', cursive;
+}
+.averageLabel {
+  font-size: 52px;
+  text-align: right;
+  font-family: 'Mogra', cursive;
+
+}
+
+.centered {
+position: fixed;
+top: 50%;
+left: 50%;
+/* bring your own prefixes */
+transform: translate(-50%, -50%);
 }
 
 .Line {

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Slider from 'react-rangeslider'
 import SlackForm from './SlackForm';
+import { Row, Col } from 'reactstrap';
+import prodlogo from './logosvg2.svg'
+
 // import 'react-rangeslider/lib/index.css'
 
 class Sliders extends Component {
@@ -57,7 +60,9 @@ class Sliders extends Component {
     const formatPc = p => p + '%'
 
     return (
-      <div className='slider custom-labels'>
+      <div
+        style={{width:'420px'}}
+        className='slider custom-labels'>
         <div style={{
           marginBottom:'40px'
         }}>
@@ -122,7 +127,6 @@ class Sliders extends Component {
         <Button style={{width:'100px', borderRadius:'12px'}} color="primary" onClick={(e) => this.handleSubmit(e)}>
           Submit
         </Button>
-        <SlackForm/>
       </div>
     )
   }

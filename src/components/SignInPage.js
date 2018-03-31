@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
+import SlackIndexPage from "./SlackIndexPage";
 import { Token } from '../lib/requests';
 
 class SignInPage extends Component {
@@ -27,7 +29,7 @@ class SignInPage extends Component {
           // because this component is rendered by a
           // route component.
           // (i.e. <Route route="/sign_in" component={SignInPage} />)
-          this.props.history.push('/');
+          window.location.href = 'http://localhost:3001/slacks'
         }
       })
   }
@@ -38,22 +40,20 @@ class SignInPage extends Component {
         className="SignInPage"
         style={{margin: '0 1rem'}}
       >
-        <h2>Sign In</h2>
-        <br/>
         <form onSubmit={this.createToken}>
           <div>
-            <label htmlFor='email'>Email</label> <br />
+            <label style={{color:'black'}} htmlFor='email'>Email</label> <br />
             <input type='email' id='email' name='email'/>
           </div>
 
           <div>
-            <label htmlFor='password'>Password</label> <br />
-            <input type='password' id='password' name='password' />
+            <label style={{color:'black'}} htmlFor='password'>Password</label> <br />
+            <input style={{color:'black'}} type='password' id='password' name='password' />
           </div>
           <br/>
 
           <div>
-            <input type='submit' value='Sign In'/>
+            <input style={{color:'black'}} type='submit' value='Sign In'/>
           </div>
         </form>
       </main>

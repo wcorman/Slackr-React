@@ -119,11 +119,10 @@ class SlackIndexPage extends React.Component {
     }
 
     return (
-      <main
+      <main id="index"
         className="SlackIndexPage"
         style={{
-          margin: '0 1rem',
-          width: '100%'
+          width: '100vw'
         }}
         >
           <main style={{
@@ -131,7 +130,8 @@ class SlackIndexPage extends React.Component {
           }}>
           <div style={{
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            marginTop: '20px'
           }}>
           <SlackNewPage />
           <Averages />
@@ -139,7 +139,7 @@ class SlackIndexPage extends React.Component {
           </main>
           <hr/>
 
-          <h2 style={{  color: 'white'}}>Slacks</h2>
+          <h2 className='headings' style={{  color: 'white'}}>Recent Slacks</h2>
 
            {
              slacks.map(
@@ -161,7 +161,7 @@ class SlackIndexPage extends React.Component {
                    <div style={{
                      textAlign: 'center'
                    }}>
-                   <h4 onClick={this.onClick} >{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
+                   <h4 className='headings' onClick={this.onClick} >{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
                  </div>
 
                       <div>
@@ -175,7 +175,7 @@ class SlackIndexPage extends React.Component {
                       <br/>
                      </div>
                     <p className='LineText'>Sleep time</p>
-                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='deepskyblue'></Line>
+                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='#15fbff'></Line>
                      <br/>
                     <p className='LineText'>Happy Level</p>
                      <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='#ffff66'></Line>
