@@ -6,7 +6,6 @@ import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import CurrentDateTime from './CurrentDateTime';
 
 
 class LandingPage extends React.Component {
@@ -59,9 +58,7 @@ class LandingPage extends React.Component {
     const inputWidth = '75%'
     return (
       <main>
-        <div style={{marginLeft:'10px', color: 'palegreen', fontSize:'30px'}}>
-        <CurrentDateTime />
-        </div>
+
         <NotificationContainer/>
 
         <div style={{width:'62vw', minWidth:'250px',}} className="centered">

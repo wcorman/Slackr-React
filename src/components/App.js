@@ -15,6 +15,7 @@ import LandingPage from './LandingPage';
 import Trends from './Trends';
 import NavBar from './NavBar';
 import AuthRoute from './AuthRoute';
+import { UnauthRoute } from 'react-router-auth'
 
 // When building React applications, we create
 // a root component that is the ancestor to all the
@@ -83,11 +84,12 @@ class App extends Component {
               component={SlackIndexPage}
             />
 
-            <AuthRoute
-              isAuthenticated={this.isSignedIn()}
+            <UnauthRoute
               exact
               path="/"
               component={LandingPage}
+              redirectTo="/slacks"
+              authenticated={this.state.user}
             />
             {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
 

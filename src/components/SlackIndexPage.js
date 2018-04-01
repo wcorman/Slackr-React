@@ -2,7 +2,6 @@ import React from 'react';
 import { Slack } from '../lib/requests';
 import SlackNewPage from './SlackNewPage';
 import Averages from './Averages';
-// import { Slider, Icon } from 'antd';
 import { Line } from 'rc-progress';
 import { Row } from 'reactstrap';
 
@@ -95,9 +94,10 @@ class SlackIndexPage extends React.Component {
       )
     }
 
+    const username = this.props.user.first_name
     const total = slacks.length
     const leftOvers = (total-9)
-
+    const singular = (total == 10)
     return (
       <main id="index"
         className="SlackIndexPage"
@@ -145,6 +145,7 @@ class SlackIndexPage extends React.Component {
                      color: 'white'
 
                    }}>
+
                    <div style={{
                      textAlign: 'center'
                    }}>
@@ -172,6 +173,9 @@ class SlackIndexPage extends React.Component {
                )
              )
            }
+           {
+             total >= 10 ? (
+               [
            <main style={{
              width: '200px',
              minWidth: '310px',
@@ -187,16 +191,27 @@ class SlackIndexPage extends React.Component {
              marginBottom: '10px',
              padding: '20px',
              color: 'white'
-
            }}>
-           <h2>And {leftOvers} more...</h2>
-           <h3>Keep it up!</h3>
-         </main>
 
+           {
+             singular ? (
+               <h2> {leftOvers} more day not shown...</h2>
+             ) : (
+           <h2> {leftOvers} more days not shown...</h2>
+            )
+           }
+           <br/>
+           <h3>Keep it up, {username}!</h3>
+         </main>
+       ])
+       : (
+         <div></div>
+       )
+     }
            </Row>
        </main>
      )
- }
-}
 
+}
+}
 export default SlackIndexPage;
