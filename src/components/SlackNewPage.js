@@ -14,7 +14,6 @@ class SlackNewPage extends Component {
   }
 
   createSlack (slackParams) {
-    debugger
     Slack
       .create(slackParams)
       .then(data => {
@@ -45,7 +44,7 @@ class SlackNewPage extends Component {
         className="SlackNewPage"
         style={{margin: '0 1rem',
                 marginTop: '10px',
-                width: '450px'
+                width: '20vw'
               }}
       >
         <h2 className='headings'>How was your day?</h2>

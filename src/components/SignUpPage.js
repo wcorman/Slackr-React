@@ -3,6 +3,9 @@ import { User } from '../lib/requests';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FormErrors from './FormErrors';
+import { NavLink } from 'react-router-dom';
+import logo from './logosvg.svg'
+import logoUnderline from './logo_underline.png'
 
 function SignUpPage(props) {
   const { onSignUp = () => {} } = props;
@@ -27,11 +30,23 @@ function SignUpPage(props) {
   }
 
   return (
-    <main
+  <main>
+    <div className='logo' style={{}}>
+    <img src ={logo} height='60' alt="Slackr Logo"/>
+    <br/>
+    <img className="underline" src ={logoUnderline} height='19' style={{
+      position: 'absolute',
+      left: '16px',
+      top: '47px',
+      zIndex: -1,
+      }}/>
+    </div>
+    <div
       className="SignInPage centered"
       style={{margin: '0 1rem', width:'40vw', borderRadius:'20px', padding:'25px', top: "43%"
     }}
       >
+
       <h2 style={{
         color:'white'
       }}>Sign Up</h2>
@@ -65,10 +80,14 @@ function SignUpPage(props) {
         </div>
         <br/>
         <MuiThemeProvider>
-          <RaisedButton label="Sign In" primary={true} style={{color:'black', width:'78%'}} type="submit" value="Sign Up" />
+          <RaisedButton label="Sign Up" primary={true} style={{color:'black', width:'25%', marginBottom:'15px'}} type="submit" value="Sign Up" />
         </MuiThemeProvider>
+        <br/>
+        <NavLink style={{color:'#15fbff', fontSize:'16px', fontFamily:'Roboto'}} className='' exact to="/"><i>Already have an account?</i></NavLink>
+
       </form>
-    </main>
+    </div>
+  </main>
   );
 }
 

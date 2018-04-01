@@ -9,7 +9,7 @@ function NavBar (props) {
   const handleSignOut = event => {
     event.preventDefault();
     onSignOut();
-    window.location.href = 'http://localhost:3001/'
+    window.location.href = ('http://localhost:3001/')
   }
 
   return (
@@ -30,14 +30,13 @@ function NavBar (props) {
 
               </div>
               <nav className="NavBar" style={{height:'45px'}}>
+                <div style={{textAlign: 'center'}}>
+                  <h3 className='navLinks' key="1">Hello, {user.first_name}</h3>
+                </div>
 
-                <NavLink className='navLinks' exact to="/slacks">Slacks</NavLink>
+                <NavLink  className='navLinks' exact to="/slacks">Slacks</NavLink>
                 <NavLink className='navLinks' exact to="/trends">Trends</NavLink>
-
-                      <span className='navLinks' key="1">Hello, {user.first_name}</span>
-                     <a className='navLinks' key="2" href="/" onClick={handleSignOut}>Sign Out</a>
-
-
+                <a className='navLinks' key="2" href="/" onClick={handleSignOut}>Sign Out</a>
                 <CurrentDateTime />
               </nav>
 

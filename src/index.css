@@ -78,6 +78,12 @@ font-family: 'Patua One';
 transform: translate(-50%, -50%);
 }
 
+.navLinks:hover {
+  background: -webkit-linear-gradient(#15fbff, palegreen);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .Line {
   margin-bottom: 12px;
 }

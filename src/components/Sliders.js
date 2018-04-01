@@ -3,8 +3,8 @@ import { Button } from 'reactstrap';
 import Slider from 'react-rangeslider'
 import SlackForm from './SlackForm';
 import { Row, Col } from 'reactstrap';
-
-// import 'react-rangeslider/lib/index.css'
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class Sliders extends Component {
   constructor (props) {
@@ -60,12 +60,12 @@ class Sliders extends Component {
 
     return (
       <div
-        style={{width:'420px'}}
+        style={{width:'25vw'}}
         className='slider custom-labels'>
         <div style={{
           marginBottom:'40px'
         }}>
-        <p>Productive Time</p>
+        <p>Productive</p>
         <Slider
           className='prodSelect'
           min={0}
@@ -81,7 +81,7 @@ class Sliders extends Component {
         <div style={{
           marginBottom:'40px'
         }}>
-        <p>Unproductive Time</p>
+        <p>Unproductive</p>
         <Slider
           className='unprodSelect'
           min={0}
@@ -123,9 +123,11 @@ class Sliders extends Component {
           onChange={(value) => this.handleSliderChange(value, 'happyValue')}
         />
         </div>
-        <Button style={{width:'100px', borderRadius:'12px'}} color="primary" onClick={(e) => this.handleSubmit(e)}>
-          Submit
-        </Button>
+      <MuiThemeProvider>
+        <RaisedButton label="Submit" primary={true} style={{width:'100px', borderRadius:'12px'}} color="primary" onClick={(e) => this.handleSubmit(e)}>
+        </RaisedButton>
+      </MuiThemeProvider>
+
       </div>
     )
   }

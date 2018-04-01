@@ -6,6 +6,9 @@ import SlackNewPage from './SlackNewPage';
 import Averages from './Averages';
 // import { Slider, Icon } from 'antd';
 import { Line } from 'rc-progress';
+import { Row, Col } from 'reactstrap';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 // The React Component parent class is also available
@@ -19,7 +22,7 @@ class SlackIndexPage extends React.Component {
       slacks: [],
       loading: true,
       value: 0,
-      title: 'App title',
+      title: 'Slackr',
     };
 
     // When using a method as a callback, we must bind
@@ -30,8 +33,6 @@ class SlackIndexPage extends React.Component {
     // creates new function that is copy of the function
     // where `this` is bound permanently.
     this.onClick = this.onClick.bind(this);
-    this.deleteSlack = this.deleteSlack.bind(this);
-    this.addSlack = this.addSlack.bind(this);
   }
 
   handleChange = (value) => {
@@ -61,45 +62,20 @@ class SlackIndexPage extends React.Component {
     );
   }
 
-  deleteSlack (event) {
-    const {currentTarget} = event
-    // console.log(currentTarget.dataset.id)
 
-    const {slacks} = this.state;
-    const slackId = parseInt(currentTarget.dataset.id, 10);
-    console.log(slackId)
-    // To delete a slack, will have to update the state
-    // to version of the state where that slack is no longer
-    // present.
-    this.setState({
-      slacks: slacks
-        .filter(slack => slack.id !== slackId)
-    })
-    // Everytime you want to change the state, use the this.setState()
-    // method. This will notify React that it potentially needs
-    // to update the DOM based on the new data in the state.
-
-    // Modifying this.state directly will cause headaches and not
-    // reflect any changes to the DOM.
-    // DO NOT DO IT! ð±
-  }
-
-  addSlack (newSlack) {
-    const {slacks} = this.state;
-
-    newSlack.author = {full_name: 'Dr. Zoidberg'}
-    this.setState({
-      slacks: [
-        newSlack,
-        ...slacks
-      ]
-    })
-  }
 
   onClick() {
     this.setState({
       title: 'Newapp title'
     })
+  }
+
+  updateComponent = (e) => {
+    this.forceUpdate()
+    }
+
+  onGreet() {
+    console.log('lol')
   }
 
   render () {
@@ -134,20 +110,27 @@ class SlackIndexPage extends React.Component {
             marginTop: '20px'
           }}>
           <SlackNewPage />
-          <Averages />
+
+          <Averages greet={this.onGreet}/>
+
           </div>
+
           </main>
           <hr/>
 
           <h2 className='headings' style={{  color: 'white', marginTop:'15px', marginLeft:'16px'}}>Recent Slacks</h2>
 
+          <Row style={{marginLeft:'10px', marginRight:'0px'}}>
            {
              slacks.map(
                slack => (
                  <div key={slack.id}>
                    <main style={{
                      width: '85%',
+                     minWidth: '310px',
+                     height: '270px',
                      paddingBottom: '25px',
+                     margin: '10px',
                      border: 'solid',
                      borderRadius: '10px',
                      borderWidth: '2px',
@@ -165,26 +148,27 @@ class SlackIndexPage extends React.Component {
                  </div>
 
                       <div>
-                    <p className='LineText'>Productive time</p>
-                     <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='palegreen'></Line>
+                    <p className='LineText'>Productive</p>
+                     <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='palegreen'></Line>
                      <br/>
                       </div>
                       <div>
-                    <p className='LineText'>Unproductive time</p>
-                      <Line className='Line' percent={slack.unprod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='tomato'></Line>
+                    <p className='LineText'>Unproductive</p>
+                      <Line className='Line' percent={slack.unprod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='tomato'></Line>
                       <br/>
                      </div>
-                    <p className='LineText'>Sleep time</p>
-                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='#15fbff'></Line>
+                    <p className='LineText'>Sleep Quality</p>
+                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#15fbff'></Line>
                      <br/>
                     <p className='LineText'>Happy Level</p>
-                     <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="1" strokeColor='#ffff66'></Line>
+                     <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#ffff66'></Line>
                    </main>
 
                  </div>
                )
              )
            }
+           </Row>
        </main>
      )
  }

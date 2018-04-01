@@ -9,9 +9,7 @@ import {
   Switch
 } from "react-router-dom";
 
-import SlackShowPage from './SlackShowPage';
 import SlackIndexPage from './SlackIndexPage';
-import SignInPage from './SignInPage';
 import SignUpPage from './SignUpPage';
 import LandingPage from './LandingPage';
 import Trends from './Trends';
@@ -92,13 +90,6 @@ class App extends Component {
             />
             {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
 
-            <Route
-              user={user}
-              isAuthenticated={this.isSignedIn()}
-              exact
-              path="/slacks/:id"
-              component={SlackShowPage}
-            />
             <AuthRoute
               user={user}
               isAuthenticated={this.isSignedIn()}

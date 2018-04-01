@@ -6,6 +6,8 @@ import prodIcon from './prod_icon.png'
 import unprodIcon from './unprod_icon.png'
 import sleepIcon from './sleep_icon.png'
 import happyIcon from './happy_icon.png'
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class Averages extends React.Component {
@@ -34,7 +36,6 @@ class Averages extends React.Component {
   }
 
   render () {
-
     return (
 
       <Col
@@ -50,6 +51,7 @@ class Averages extends React.Component {
           display: 'flex',
         }}
         >
+
           <Col
             style={{
             width: '225px',

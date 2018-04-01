@@ -51,14 +51,14 @@ class SignInPage extends Component {
     return (
       <main
         className="SignInPage"
-        style={{margin: '0 1rem', marginRight:'20px'}}
+        style={{margin: '0 1rem', marginRight:'20px', background:'rgba(255,255,255,0.1)'}}
       >
         {
           errors.map(
             (e, i) => <div className="alert" key={i}>{e.message}</div>
           )
         }
-        <form onSubmit={this.createToken}>
+        <form style={{backgroundColor: 'rgba(255,255,255,0.1)'}} onSubmit={this.createToken}>
           <div>
             <label style={{color:'black'}} htmlFor='email'>Email</label> <br />
             <input style={{color:'black', width:'50%', minWidth:'205px'}} type='email' id='email' name='email'/>
