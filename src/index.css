@@ -13,7 +13,7 @@ main {
 }
 label {
 color: white;
-font-family: 'Patua One', cursive;
+font-family: 'Ubuntu', sans-serif;
 }
 input {
   border-radius: 8px;
@@ -21,16 +21,16 @@ input {
 }
 
 h1 {
-  font-family: 'Patua One', cursive;
+  font-family: 'Ubuntu', sans-serif;
   color: white;
 }
 h2 {
-  font-family: 'Patua One', cursive;
+  font-family: 'Ubuntu', sans-serif;
   color: white;
 }
 p {
   color: white;
-  font-family: 'Patua One', cursive;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .signUpInput {
@@ -49,18 +49,25 @@ p {
 }
 
 .headings {
-  font-family: 'Patua One', cursive;
+  font-family: 'Ubuntu', sans-serif;
 
 }
 
 .navLinks {
-  font-family: 'Patua One', cursive;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 4px !important;
+  text-decoration: none !important;
 }
+.navLinks.active {
+  padding: 4px;
+}
+
 .averageLabel {
   font-size: 52px;
   text-align: right;
   font-family: 'Mogra', cursive;
-
 }
 
 .centered {

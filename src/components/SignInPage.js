@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
-import SlackIndexPage from "./SlackIndexPage";
 import { Token } from '../lib/requests';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

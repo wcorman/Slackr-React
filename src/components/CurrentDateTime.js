@@ -21,7 +21,6 @@ class CurrentDateTime extends Component {
   }
 
   render () {
-    var options = { formatMatcher: 'hour' }
 
     return (
       <span className="CurrentDateTime" style={{fontFamily:'Patua One'}}>

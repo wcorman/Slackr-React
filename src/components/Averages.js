@@ -6,8 +6,6 @@ import prodIcon from './prod_icon.png'
 import unprodIcon from './unprod_icon.png'
 import sleepIcon from './sleep_icon.png'
 import happyIcon from './happy_icon.png'
-import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class Averages extends React.Component {
@@ -27,7 +25,6 @@ class Averages extends React.Component {
       .averages()
       .then(
         averagesObject => {
-          console.log(averagesObject)
           this.setState({
             averages: averagesObject,
           });
@@ -36,12 +33,10 @@ class Averages extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.slacks);
     Slack
       .averages()
       .then(
         averagesObject => {
-          console.log(averagesObject)
           this.setState({
             averages: averagesObject,
           }

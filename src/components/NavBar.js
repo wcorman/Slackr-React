@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import CurrentDateTime from './CurrentDateTime';
 import logo from './logosvg.svg'
 import logoUnderline from './logo_underline.png'
 
@@ -30,14 +29,13 @@ function NavBar (props) {
 
               </div>
               <nav className="NavBar" style={{height:'45px'}}>
-                <div style={{textAlign: 'center'}}>
+                {/* <div style={{textAlign: 'center'}}>
                   <h3 className='navLinks' key="1">Hello, {user.first_name}</h3>
-                </div>
+                </div> */}
 
-                <NavLink  className='navLinks' exact to="/slacks">Slacks</NavLink>
+                <NavLink className='navLinks' exact to="/slacks">Home</NavLink>
                 <NavLink className='navLinks' exact to="/trends">Trends</NavLink>
-                <a className='navLinks' key="2" href="/" onClick={handleSignOut}>Sign Out</a>
-                <CurrentDateTime />
+                <a className='navLinks' key="2" href="/" onClick={handleSignOut}><i>Sign Out</i></a>
               </nav>
 
             </div>

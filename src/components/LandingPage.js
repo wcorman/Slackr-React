@@ -1,14 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import logoShadow from './logosvgShadow.svg'
-import logoUnderline from './logo_underline.png'
 import SignInPage from './SignInPage'
-import SignUpPage from './SignUpPage'
-import { Row, Col } from 'reactstrap';
-import { Button } from 'reactstrap';
 import { Collapse } from 'antd';
 import 'antd/dist/antd.css';
-import { Token } from '../lib/requests';
 import { NavLink } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';

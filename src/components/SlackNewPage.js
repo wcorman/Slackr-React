@@ -29,13 +29,7 @@ class SlackNewPage extends Component {
               )
           });
         } else {
-          // const id = data.id
-          const { id } = data;
-          // Components rendered by the <Route /> component
-          // gain access to a .history than can be used to manipulate
-          // history. Using allows to redirect a user to
-          // a different rendering whichever component is there.
-          // this.props.history.push(`/slacks/${id}`);
+
         }
       })
   }
@@ -49,7 +43,6 @@ class SlackNewPage extends Component {
                 width: '20vw'
               }}
       >
-        <h2 className='headings'>How was your day?</h2>
         <Sliders
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}

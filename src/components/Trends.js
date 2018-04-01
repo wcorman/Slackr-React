@@ -18,9 +18,6 @@ class Trends extends React.Component {
   }
 
   componentDidMount () {
-    // console.log(this.props.user.id)
-    var moment = require('moment');
-
     Slack
       .trends()
       .then(
@@ -112,8 +109,6 @@ class Trends extends React.Component {
     }
 
       render () {
-        const { trends } = this.state;
-        const { dates } = this.state;
         const username = this.props.user.first_name+' '+this.props.user.last_name+`'s productivity trend`
 
         return (

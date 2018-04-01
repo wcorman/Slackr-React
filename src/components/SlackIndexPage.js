@@ -1,14 +1,10 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
 import { Slack } from '../lib/requests';
 import SlackNewPage from './SlackNewPage';
 import Averages from './Averages';
 // import { Slider, Icon } from 'antd';
 import { Line } from 'rc-progress';
-import { Row, Col } from 'reactstrap';
-import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Row } from 'reactstrap';
 
 
 // The React Component parent class is also available
@@ -40,13 +36,10 @@ class SlackIndexPage extends React.Component {
   }
 
   componentDidMount () {
-    console.log(this.props.user.id)
-
     Slack
       .all()
       .then(
         slacks => {
-          console.log(slacks)
           this.setState({
             slacks: slacks,
             loading: false
@@ -56,12 +49,10 @@ class SlackIndexPage extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.slacks);
     Slack
       .all()
       .then(
         slacks => {
-          console.log(slacks)
           this.setState({
             slacks: slacks,
             loading: false
@@ -86,9 +77,7 @@ class SlackIndexPage extends React.Component {
     this.forceUpdate()
     }
 
-  onGreet() {
-    console.log('lol')
-  }
+
 
   render () {
     const { slacks, loading } = this.state;
@@ -105,6 +94,9 @@ class SlackIndexPage extends React.Component {
         </main>
       )
     }
+
+    const total = slacks.length
+    const leftOvers = (total-9)
 
     return (
       <main id="index"
@@ -130,11 +122,11 @@ class SlackIndexPage extends React.Component {
           </main>
           <hr/>
 
-          <h2 className='headings' style={{  color: 'white', marginTop:'15px', marginLeft:'16px'}}>Recent Slacks</h2>
+          <h2 className='headings' style={{  color: 'white', marginTop:'15px', marginLeft:'16px'}}>Recent Entries</h2>
 
           <Row style={{marginLeft:'10px', marginRight:'0px'}}>
            {
-             slacks.map(
+             slacks.slice(0, 9).map(
                slack => (
                  <div key={slack.id}>
                    <main style={{
@@ -180,6 +172,27 @@ class SlackIndexPage extends React.Component {
                )
              )
            }
+           <main style={{
+             width: '200px',
+             minWidth: '310px',
+             height: '270px',
+             textAlign: 'center',
+             paddingBottom: '25px',
+             margin: '10px',
+             border: 'solid',
+             borderRadius: '10px',
+             borderWidth: '2px',
+             borderColor: 'grey',
+             backgroundColor: 'rgba(0, 0, 0, 0.1)',
+             marginBottom: '10px',
+             padding: '20px',
+             color: 'white'
+
+           }}>
+           <h2>And {leftOvers} more...</h2>
+           <h3>Keep it up!</h3>
+         </main>
+
            </Row>
        </main>
      )
