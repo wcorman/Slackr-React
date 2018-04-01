@@ -22,7 +22,7 @@ class Averages extends React.Component {
   }
 
   componentDidMount () {
-
+    this.setState(),
     Slack
       .averages()
       .then(
@@ -33,6 +33,21 @@ class Averages extends React.Component {
           });
         }
       );
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.slacks);
+    Slack
+      .averages()
+      .then(
+        averagesObject => {
+          console.log(averagesObject)
+          this.setState({
+            averages: averagesObject,
+          }
+        );
+      }
+    );
   }
 
   render () {

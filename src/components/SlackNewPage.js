@@ -7,7 +7,8 @@ class SlackNewPage extends Component {
     super(props);
 
     this.state = {
-      validationErrors: []
+      validationErrors: [],
+      slacks: []
     };
 
     this.createSlack = this.createSlack.bind(this);
@@ -20,6 +21,7 @@ class SlackNewPage extends Component {
 
         if (data.errors) {
           this.setState({
+            slacks: {},
             validationErrors: data
               .errors
               .filter(

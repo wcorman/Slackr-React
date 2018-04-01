@@ -54,8 +54,20 @@ class SlackIndexPage extends React.Component {
         }
       );
   }
+
   componentDidUpdate() {
     console.log(this.state.slacks);
+    Slack
+      .all()
+      .then(
+        slacks => {
+          console.log(slacks)
+          this.setState({
+            slacks: slacks,
+            loading: false
+          });
+        }
+      );
     localStorage.setItem(
       this.state.slacks,
       JSON.stringify(this.state.slacks)
