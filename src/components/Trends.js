@@ -63,7 +63,7 @@ class Trends extends React.Component {
 
             datasets:[
               {
-                label: 'Unporductive Time',
+                label: 'Procrastination',
                 data: unprodArray,
                 backgroundColor:[
                   'rgba(255, 99, 132, 0.1)'
@@ -71,7 +71,7 @@ class Trends extends React.Component {
                 borderColor: 'tomato',
               },
               {
-                label: 'Productive Time',
+                label: 'Healthy Meals',
                 data: prodArray,
                 backgroundColor:[
                   'rgba(155, 206, 86, 0.1)'
@@ -109,7 +109,7 @@ class Trends extends React.Component {
     }
 
       render () {
-        const username = this.props.user.first_name+' '+this.props.user.last_name+`'s productivity trend`
+        const username = this.props.user.first_name+' '+this.props.user.last_name+`'s lifestyle trend`
 
         return (
           <div className="chart">

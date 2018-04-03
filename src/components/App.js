@@ -82,6 +82,8 @@ class App extends Component {
               exact
               path="/slacks"
               component={SlackIndexPage}
+              redirectTo="/slacks"
+
             />
 
             <UnauthRoute

@@ -38,7 +38,7 @@ function NavBar (props) {
                 <NavLink className='navLinks center' exact to="/trends"><img src ={trendLogo} height='39' alt="Slackr Logo"/></NavLink>
 
                   <a style={{marginRight:'15px'}} className='nameplace' key="1">Hello, {user.first_name}</a>
-                <a style={{marginRight:'10px'}} className='navLinks' key="2" href="/" onClick={handleSignOut}><i style={{fontSize:'18px'}}>Sign Out</i></a>
+                <a style={{marginRight:'10px'}} id='signout' className='navLinks' key="2" href="/" onClick={handleSignOut}><i style={{fontSize:'18px'}}>Sign Out</i></a>
               </nav>
 
             </div>
@@ -50,37 +50,6 @@ function NavBar (props) {
             <div></div>
           )
         }
-      {/* <div className='logo' style={{'float':'left'}}>
-      <img src ={logo} height='60' alt="Slackr Logo"/>
-      <br/>
-      <img className="underline" src ={logoUnderline} height='19' style={{
-        position: 'absolute',
-        left: '16px',
-        top: '47px',
-        zIndex: -1,
-        }}/>
-
-      </div>
-    <nav className="NavBar" style={{height:'45px'}}>
-
-      <NavLink className='navLinks' exact to="/">Landing Page</NavLink>
-      <NavLink className='navLinks' exact to="/slacks">Slacks</NavLink>
-      <NavLink className='navLinks' exact to="/trends">Trends</NavLink>
-
-            <span className='navLinks' key="1">Hello, {user.first_name}</span>
-          , <a className='navLinks' key="2" href="/" onClick={handleSignOut}>Sign Out</a>
-
-          <div>
-          <NavLink className='navLinks' style={{
-            marginRight:"13px"
-          }} exact to="/sign_in">Sign In</NavLink>
-
-          <NavLink className='navLinks' exact to="/sign_up">Sign Up</NavLink>
-          </div>
-
-      }
-      <CurrentDateTime />
-    </nav> */}
   </main>
   )
 }

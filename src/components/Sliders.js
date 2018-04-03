@@ -50,30 +50,19 @@ class Sliders extends Component {
 
     return (
       <div
-        style={{width:'25vw'}}
+        style={{width:'27vw', minWidth:'240px'}}
         className='slider custom-labels'>
         <div style={{
-          marginBottom:'40px'
+          marginBottom:'20px'
         }}>
         <h2 className='headings'>How was your day?</h2>
 
-        <p>Productive</p>
-        <Slider
-          className='prodSelect'
-          min={0}
-          max={100}
-          value={prodValue}
-          labels={horizontalLabels}
-          format={formatPc}
-          handleLabel={prodValue}
-          onChange={(value) => this.handleSliderChange(value, 'prodValue')}
-        />
-        </div>
+
 
         <div style={{
-          marginBottom:'40px'
+          marginBottom:'10px'
         }}>
-        <p>Unproductive</p>
+        <p style={{fontSize:'19px', color:'tomato'}}>Procrastination</p>
         <Slider
           className='unprodSelect'
           min={0}
@@ -85,10 +74,22 @@ class Sliders extends Component {
           onChange={(value) => this.handleSliderChange(value, 'unprodValue')}
         />
         </div>
+        <p style={{fontSize:'19px', color:'palegreen'}}>Healthy Meals</p>
+        <Slider
+          className='prodSelect'
+          min={0}
+          max={100}
+          value={prodValue}
+          labels={horizontalLabels}
+          format={formatPc}
+          handleLabel={prodValue}
+          onChange={(value) => this.handleSliderChange(value, 'prodValue')}
+        />
+        </div>
         <div style={{
-          marginBottom:'40px'
+          marginBottom:'10px'
         }}>
-        <p>Sleep Quality</p>
+        <p style={{fontSize:'19px', color:'#15fbff'}}>Sleep Quality</p>
         <Slider
           className='sleepSelect'
           min={0}
@@ -103,7 +104,7 @@ class Sliders extends Component {
         <div style={{
           marginBottom:'40px'
         }}>
-        <p>Happy Level</p>
+        <p style={{fontSize:'19px', color:'gold'}}>Mood</p>
         <Slider
           className='happySelect'
           min={0}
@@ -123,7 +124,6 @@ class Sliders extends Component {
       </div>
     )
   }
-
 }
 
 

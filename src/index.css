@@ -53,11 +53,20 @@ p {
 
 .headings {
   font-family: 'Ubuntu', sans-serif;
+}
+#averages{
+  display: 'flex';
+  justify-content: space-around;
 
+}
+#signout{
+  padding:2px !important;
+  color:tomato
 }
 .signout{
 font-size: 20px
 }
+
 .navLinks {
   font-family: 'Ubuntu', sans-serif;
   font-size: 25px;
@@ -112,7 +121,9 @@ transform: translate(-50%, -50%);
 .Line {
   margin-bottom: 12px;
 }
-
+.chart{
+  margin-bottom:25px
+}
 .LineText {
   margin-bottom: 0px;
 }

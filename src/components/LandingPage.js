@@ -1,5 +1,5 @@
 import React from 'react';
-import logoShadow from './logosvgShadow.svg'
+import logoShadow from './logoani.svg'
 import SignInPage from './SignInPage'
 import { Collapse } from 'antd';
 import 'antd/dist/antd.css';
@@ -71,8 +71,8 @@ class LandingPage extends React.Component {
 
           }} src ={logoShadow} alt="Slackr Logo"/>
         <div style={{backgroundColor:'rgba(255,255,255, 0.1)'}}>
-          <Collapse style={{alignContent:'center', fontSize:'20px', marginBottom: '20px', backgroundColor:'rgba(255,255,255, 0.1)'}}  onChange={callback}>
-            <Panel  style={{backgroundColor:'rgba(255,255,255, 0.4)'}} header="Sign In" key="1">
+          <Collapse style={{alignContent:'center', fontSize:'20px', marginBottom: '20px'}}  onChange={callback}>
+            <Panel  style={{backgroundColor:'rgba(255,255,255, 0.1)'}} header="Sign In" key="1">
               <SignInPage props={this.props.history}/>
             </Panel>
           </Collapse>

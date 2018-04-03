@@ -51,7 +51,6 @@ function SignUpPage(props) {
         color:'white'
       }}>Sign Up</h2>
       <br/>
-
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="first_name">First Name</label>

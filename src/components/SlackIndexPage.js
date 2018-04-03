@@ -3,7 +3,7 @@ import { Slack } from '../lib/requests';
 import SlackNewPage from './SlackNewPage';
 import Averages from './Averages';
 import { Line } from 'rc-progress';
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 
 // The React Component parent class is also available
@@ -113,6 +113,7 @@ class SlackIndexPage extends React.Component {
             justifyContent: 'space-between',
             marginTop: '20px'
           }}>
+
           <SlackNewPage />
 
           <Averages greet={this.onGreet}/>
@@ -151,21 +152,20 @@ class SlackIndexPage extends React.Component {
                    }}>
                    <h4 className='headings' onClick={this.onClick} >{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
                  </div>
-
                       <div>
-                    <p className='LineText'>Productive</p>
-                     <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='palegreen'></Line>
-                     <br/>
-                      </div>
-                      <div>
-                    <p className='LineText'>Unproductive</p>
+                    <p className='LineText'>Procrastination</p>
                       <Line className='Line' percent={slack.unprod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='tomato'></Line>
                       <br/>
+                     </div>
+                     <div>
+                   <p className='LineText'>Healthy Meals</p>
+                    <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='palegreen'></Line>
+                    <br/>
                      </div>
                     <p className='LineText'>Sleep Quality</p>
                      <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#15fbff'></Line>
                      <br/>
-                    <p className='LineText'>Happy Level</p>
+                    <p className='LineText'>Mood</p>
                      <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#ffff66'></Line>
                    </main>
 

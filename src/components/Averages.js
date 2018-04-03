@@ -1,9 +1,10 @@
 import React from 'react';
 import { Slack } from '../lib/requests';
 import { Circle } from 'rc-progress';
-import { Row, Col } from 'reactstrap';
-import prodIcon from './prod_icon.png'
-import unprodIcon from './unprod_icon.png'
+import { Container, Row, Col } from 'reactstrap';
+// import prodIcon from './prod_icon.png'
+import foodIcon from './food-icon.png'
+import slackingIcon from './slacking-icon.png'
 import sleepIcon from './sleep_icon.png'
 import happyIcon from './happy_icon.png'
 
@@ -47,22 +48,23 @@ class Averages extends React.Component {
 
   render () {
     return (
+      <Container>
 
       <Col
-        md="8"
+        md="auto"
+        sm='auto'
         className="Averages"
         style={{
-          margin: '0 1rem',
-          marginRight: '60px',
+          margin: '0 3rem',
+          marginRight: '0px',
         }}
       >
-        <h1 className="headings" style={{marginBottom:'35px'}}>Averages</h1>
-        <Row style={{
-          display: 'flex',
-        }}
-        >
+        <h1 className="headings" style={{marginBottom:'15px', marginLeft:'40px'}}>Averages</h1>
+        <Row id='averages'>
 
           <Col
+            md="auto"
+            sm='auto'
             style={{
             width: '225px',
             margin: '5px',
@@ -76,21 +78,25 @@ class Averages extends React.Component {
               marginLeft: '22px',
               position: 'absolute'
             }}>
-              {Math.round((this.state.averages.prod_time) * 100 /100)}%
+              {Math.round((this.state.averages.unprod_time) * 100 /100)}%
             </div>
           <Circle
+            md="auto"
+            sm='auto'
             style={{height:'235px'}}
-            percent={this.state.averages.prod_time}
+            percent={this.state.averages.unprod_time}
             strokeWidth="5"
             trailWidth='2'
             strokeLinecap="round"
-            strokeColor="palegreen"
+            strokeColor="tomato"
             trailColor='rgba(255, 255, 255, 0.3)'
           />
-          <img style={{marginTop:'28px'}} className="icons" src ={prodIcon} height='80' alt="Slackr Logo"/>
+          <img style={{marginTop:'38px', marginLeft: '50px'}} className="icons" src ={slackingIcon} height='75' alt="Slackr Logo"/>
         </Col>
 
           <Col
+            md="auto"
+            sm='auto'
             style={{
             width: '225px',
             margin: '5px',
@@ -113,13 +119,16 @@ class Averages extends React.Component {
             strokeWidth="5"
             trailWidth='2'
             strokeLinecap="round"
-            strokeColor="tomato"
+            strokeColor="palegreen"
             trailColor='rgba(255, 255, 255, 0.3)'
           />
-          <img style={{marginTop:'28px'}} className="icons" src ={unprodIcon} height='80' alt="Slackr Logo"/>
+          <img style={{marginTop:'28px', marginLeft: '45px'}} className="icons" src ={foodIcon} height='85' alt="Slackr Logo"/>
         </Col>
 
           <Col
+            md="auto"
+            sm='auto'
+            xs='auto'
             style={{
             width: '225px',
             margin: '5px',
@@ -144,11 +153,14 @@ class Averages extends React.Component {
             strokeColor="#15fbff"
             trailColor='rgba(255, 255, 255, 0.3)'
           />
-          <img style={{marginTop:'28px'}} className="icons" src ={sleepIcon} height='89' alt="Slackr Logo"/>
+          <img style={{marginTop:'28px', marginLeft: '45px'}} className="icons" src ={sleepIcon} height='89' alt="Slackr Logo"/>
 
         </Col>
 
           <Col
+            md="auto"
+            sm='auto'
+            xs='12'
             style={{
             width: '225px',
             margin: '5px',
@@ -173,11 +185,12 @@ class Averages extends React.Component {
             strokeColor="#ffff66"
             trailColor='rgba(255, 255, 255, 0.3)'
           />
-          <img style={{marginTop:'28px'}} className="icons" src ={happyIcon} height='80' alt="Slackr Logo"/>
+          <img style={{marginTop:'28px', marginLeft: '43px'}} className="icons" src ={happyIcon} height='80' alt="Slackr Logo"/>
         </Col>
 
       </Row>
     </Col>
+  </Container>
 
     );
   }
