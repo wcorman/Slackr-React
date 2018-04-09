@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
-
 class LandingPage extends React.Component {
 
   createNotification = (type) => {
@@ -57,7 +56,7 @@ class LandingPage extends React.Component {
 
     const inputWidth = '75%'
     return (
-      <main>
+      <main style={{width:'100vw', height:'100vh'}} id='landingPage'>
 
         <NotificationContainer/>
 
@@ -78,7 +77,7 @@ class LandingPage extends React.Component {
           </Collapse>
         </div>
 
-          <NavLink style={{color:'#15fbff', fontSize:'20px', fontFamily:'Roboto'}} className='' exact to="/sign_up"><i>New to Slackr? Sign up here...</i></NavLink>
+          <NavLink style={{color:'#15fbff', fontSize:'20px', fontWeight:'bold', fontFamily:'Roboto', backgroundColor:'rgba(70,77,97, 0.9)'}} className='' exact to="/sign_up"><i>New to Slackr? Sign up here...</i></NavLink>
       </div>
     </main>
     );

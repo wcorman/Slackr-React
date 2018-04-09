@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0px;
   font-family: 'Roboto', sans-serif;
+  /* background-image: url("./pattern.png") !important; */
+
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 /* .rangeslider__fill { background-color: tomato !important; } */
@@ -33,12 +35,19 @@ p {
   font-family: 'Ubuntu', sans-serif;
 }
 
+body #landingPage{
+background-image: url("./pattern.png") !important;
+}
+/* #card :hover{
+  background-color: rgba(0, 0, 0, 0.1)
+} */
 #cards {
   margin:10px
 }
+
 .signUpInput {
-    width: 78%;
-    min-width: 220px;
+    width: 80%;
+    /* min-width: 220px; */
     color: black;
     margin-bottom: 23px;
 }
@@ -57,7 +66,6 @@ p {
 #averages{
   display: 'flex';
   justify-content: space-around;
-
 }
 #signout{
   padding:2px !important;
@@ -66,7 +74,9 @@ p {
 .signout{
 font-size: 20px
 }
-
+.SignUpPage {
+background-color: rgba(0, 0, 0, 0.5);
+}
 .navLinks {
   font-family: 'Ubuntu', sans-serif;
   font-size: 25px;
@@ -96,7 +106,18 @@ font-size: 20px
   text-align: right;
   font-family: 'Mogra', cursive;
 }
-
+#percent1 :hover {
+  color:tomato;
+}
+#percent2 :hover {
+  color:palegreen;
+}
+#percent3 :hover {
+  color:#15fbff;
+}
+#percent4 :hover {
+  color:#ffff66;
+}
 .centered {
 position: fixed;
 top: 50%;

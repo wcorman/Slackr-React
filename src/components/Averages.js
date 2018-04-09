@@ -71,14 +71,14 @@ class Averages extends React.Component {
           }}
           >
             {/* <div><p>Productive Time:</p></div> */}
-            <div className='averageLabel' style={{
+            <div id="percent1" className='averageLabel' style={{
               height: '40px',
               width: '150px',
               marginTop: '80px',
               marginLeft: '22px',
               position: 'absolute'
             }}>
-              {Math.round((this.state.averages.unprod_time) * 100 /100)}%
+              <p className="averageLabel">{Math.round((this.state.averages.unprod_time) * 100 /100)}%</p>
             </div>
           <Circle
             md="auto"
@@ -104,14 +104,14 @@ class Averages extends React.Component {
           >
             {/* <div><p>Unproductive Time:</p></div> */}
 
-            <div className='averageLabel' style={{
+            <div id="percent2" className='averageLabel' style={{
               height: '40px',
               width: '150px',
               marginTop: '80px',
               marginLeft: '22px',
               position: 'absolute'
             }}>
-             {Math.round((this.state.averages.unprod_time) * 100 /100)}%
+             <p className="averageLabel">{Math.round((this.state.averages.prod_time) * 100 /100)}%</p>
             </div>
           <Circle
             style={{height:'235px'}}
@@ -135,14 +135,14 @@ class Averages extends React.Component {
           }}
           >
             {/* <div><p>Sleep Quality:</p></div> */}
-            <div className='averageLabel' style={{
+            <div id="percent3" className='averageLabel' style={{
               height: '40px',
               width: '150px',
               marginTop: '80px',
               marginLeft: '22px',
               position: 'absolute'
             }}>
-               {Math.round((this.state.averages.sleep_time) * 100 /100)}%
+               <p className="averageLabel">{Math.round((this.state.averages.sleep_time) * 100 /100)}%</p>
             </div>
           <Circle
             style={{height:'235px'}}
@@ -167,14 +167,14 @@ class Averages extends React.Component {
           }}
           >
             {/* <div><p>Happy Level:</p></div> */}
-            <div className='averageLabel' style={{
+            <div id="percent4" className='averageLabel' style={{
               height: '40px',
               width: '150px',
               marginTop: '80px',
               marginLeft: '22px',
               position: 'absolute'
             }}>
-              {Math.round((this.state.averages.happy) * 100 /100)}%
+              <p className="averageLabel">{Math.round((this.state.averages.happy) * 100 /100)}%</p>
             </div>
           <Circle
             style={{height:'235px'}}

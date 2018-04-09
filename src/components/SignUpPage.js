@@ -30,7 +30,7 @@ function SignUpPage(props) {
   }
 
   return (
-  <main>
+  <main style={{width:'100vw', height:'100vh'}} id='landingPage'>
     <div className='logo' style={{}}>
     <img src ={logo} height='60' alt="Slackr Logo"/>
     <br/>
@@ -42,8 +42,8 @@ function SignUpPage(props) {
       }}/>
     </div>
     <div
-      className="SignInPage centered"
-      style={{margin: '0 1rem', width:'40vw', borderRadius:'20px', padding:'25px', top: "43%"
+      className="SignUpPage centered"
+      style={{margin: '0 1rem', width:'55vw', borderRadius:'20px', padding:'25px', top: "50%"
     }}
       >
 

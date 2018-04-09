@@ -23,48 +23,51 @@ class Trends extends React.Component {
       .then(
         trendsObject => {
 
-          const dateArray = []
-            trendsObject.forEach(function(date) {
-              const dateHuman = date.created_at.slice(0,-14)
-                dateArray.push(dateHuman)
+          const datesArray = []
+            trendsObject.forEach(function(entry) {
+              const dateSliced = entry.created_at.slice(0,-14)
+                datesArray.push(dateSliced)
                 });
-                console.log(dateArray);
+                console.log(datesArray);
 
-          const prodArray = []
-            trendsObject.forEach(function(prod) {
-                prodArray.push(prod.prod_time)
+          const healthyMealsArray = []
+          console.log(healthyMealsArray)
+            trendsObject.forEach(function(entry) {
+                healthyMealsArray.push(entry.prod_time)
                 });
-                console.log(prodArray);
+                console.log(healthyMealsArray);
 
-          const unprodArray = []
-            trendsObject.forEach(function(unprod) {
-                unprodArray.push(unprod.unprod_time)
+          const procrastinationArray = []
+            trendsObject.forEach(function(entry) {
+                procrastinationArray.push(entry.unprod_time)
                 });
-                console.log(unprodArray);
+                console.log(procrastinationArray);
 
           const sleepArray = []
-            trendsObject.forEach(function(sleep) {
-                sleepArray.push(sleep.sleep_time)
+            trendsObject.forEach(function(entry) {
+                sleepArray.push(entry.sleep_time)
                 });
                 console.log(sleepArray);
 
-          const happyArray = []
-            trendsObject.forEach(function(happy) {
-                happyArray.push(happy.happy)
+          const moodArray = []
+            trendsObject.forEach(function(entry) {
+                moodArray.push(entry.happy)
                 });
-                console.log(happyArray);
+                console.log(moodArray);
+
+
 
           this.setState({
 
             trends: trendsObject,
             loading: false,
             chartData:{
-              labels: dateArray,
+              labels: datesArray,
 
             datasets:[
               {
                 label: 'Procrastination',
-                data: unprodArray,
+                data: procrastinationArray,
                 backgroundColor:[
                   'rgba(255, 99, 132, 0.1)'
                 ],
@@ -72,7 +75,7 @@ class Trends extends React.Component {
               },
               {
                 label: 'Healthy Meals',
-                data: prodArray,
+                data: healthyMealsArray,
                 backgroundColor:[
                   'rgba(155, 206, 86, 0.1)'
                 ],
@@ -88,8 +91,8 @@ class Trends extends React.Component {
                 borderColor: 'deepskyblue'
               },
               {
-                label: 'Happy Level',
-                data: happyArray,
+                label: 'Mood',
+                data: moodArray,
                 backgroundColor:[
                   'rgba(255, 206, 86, 0.1)'
                 ],
@@ -109,7 +112,7 @@ class Trends extends React.Component {
     }
 
       render () {
-        const username = this.props.user.first_name+' '+this.props.user.last_name+`'s lifestyle trend`
+        const username = this.props.user.first_name+' '+this.props.user.last_name+ "'s lifestyle trend"
 
         return (
           <div className="chart">

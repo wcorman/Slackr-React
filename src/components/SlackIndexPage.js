@@ -130,7 +130,7 @@ class SlackIndexPage extends React.Component {
              slacks.slice(0, 9).map(
                slack => (
                  <div key={slack.id}>
-                   <main style={{
+                   <main id='card' style={{
                      width: '85%',
                      minWidth: '310px',
                      height: '270px',
