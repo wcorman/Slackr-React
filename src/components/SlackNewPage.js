@@ -8,7 +8,7 @@ class SlackNewPage extends Component {
 
     this.state = {
       validationErrors: [],
-      slacks: []
+      slacks: {}
     };
 
     this.createSlack = this.createSlack.bind(this);

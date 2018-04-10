@@ -47,6 +47,7 @@ class SlackIndexPage extends React.Component {
       );
   }
 
+
   componentDidUpdate() {
     Slack
       .all()
@@ -114,7 +115,7 @@ class SlackIndexPage extends React.Component {
             marginTop: '20px'
           }}>
 
-          <SlackNewPage />
+          <SlackNewPage action={this.update}/>
 
           <Averages greet={this.onGreet}/>
 
