@@ -1,218 +1,207 @@
-import React from 'react';
-import { Slack } from '../lib/requests';
-import SlackNewPage from './SlackNewPage';
-import Averages from './Averages';
-import { Line } from 'rc-progress';
-import { Row, Col } from 'reactstrap';
+import React from "react";
+import { Line } from "rc-progress";
+import { Row, Col } from "reactstrap";
+import { Slack } from "../lib/requests";
+import SlackNewPage from "./SlackNewPage";
+import Averages from "./Averages";
 
-
-// The React Component parent class is also available
-// as a property of the React default import object.
 class SlackIndexPage extends React.Component {
-
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       slacks: [],
       loading: true,
       value: 0,
-      title: 'Slackr',
+      title: "Slackr",
+      averages: {}
     };
 
-    // When using a method as a callback, we must bind
-    // this to otherwise we won't have access to any properties
-    // of `this` include the state, setState and the props.
-
-    // `.bind()` is a method of functions that effectively
-    // creates new function that is copy of the function
-    // where `this` is bound permanently.
-    this.onClick = this.onClick.bind(this);
+    this.addSlack = this.addSlack.bind(this);
+    this.getAverages = this.getAverages.bind(this);
   }
 
-  handleChange = (value) => {
-    this.setState({ value });
-  }
+  componentDidMount() {
+    this.getAverages();
 
-  componentDidMount () {
     Slack
       .all()
-      .then(
-        slacks => {
-          this.setState({
-            slacks: slacks,
-            loading: false
-          });
-        }
-      );
+      .then(slacks => {
+        this.setState({
+          slacks: slacks,
+          loading: false
+        });
+      });
   }
-
 
   componentDidUpdate() {
-    Slack
-      .all()
-      .then(
-        slacks => {
-          this.setState({
-            slacks: slacks,
-            loading: false
-          });
-        }
-      );
     localStorage.setItem(
       this.state.slacks,
       JSON.stringify(this.state.slacks)
     );
   }
 
-
-
-  onClick() {
-    this.setState({
-      title: 'Newapp title'
-    })
+  getAverages() {
+    Slack
+      .averages()
+      .then(averagesObject => {
+        this.setState({
+          averages: averagesObject
+        });
+      });
   }
 
-  updateComponent = (e) => {
-    this.forceUpdate()
-    }
+  addSlack (newSlack) {
+    const {slacks} = this.state;
 
+    this.setState({
+      slacks: [
+        newSlack,
+        ...slacks
+      ]
+    });
 
+    this.getAverages();
+  }
 
-  render () {
-    const { slacks, loading } = this.state;
-    var moment = require('moment');
+  render() {
+    const {slacks, loading} = this.state;
+    const username = this.props.user.first_name;
+    const total = slacks.length;
+    const leftOvers = total - 9;
+    const singular = total == 10;
+    const moment = require("moment");
 
     if (loading) {
       return (
-        <main
-          className="SlackIndexPage"
-          style={{margin: '0 1rem'}}
-        >
+        <main className="SlackIndexPage" style={{ margin: "0 1rem" }}>
           <h2>Slacks</h2>
           <h4>Loading Slacks...</h4>
         </main>
-      )
+      );
     }
 
-    const username = this.props.user.first_name
-    const total = slacks.length
-    const leftOvers = (total-9)
-    const singular = (total == 10)
     return (
-      <main id="index"
-        className="SlackIndexPage"
-        style={{
-          width: '100vw'
-        }}
-        >
-          <main style={{
-            textAlign: "center"
-          }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginTop: '20px'
-          }}>
-
-          <SlackNewPage action={this.update}/>
-
-          <Averages greet={this.onGreet}/>
-
+      <main id="index" className="SlackIndexPage" style={{ width: "100vw" }}>
+        <main style={{ textAlign: "center" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+            <SlackNewPage addSlack={this.addSlack} />
+            <Averages averages={this.state.averages} />
           </div>
+        </main>
 
-          </main>
-          <hr/>
+        <hr />
 
-          <h2 className='headings' style={{  color: 'white', marginTop:'15px', marginLeft:'16px'}}>Recent Entries</h2>
+        <h2 className="headings" style={{ color: "white", marginTop: "15px", marginLeft: "16px" }}>
+          Recent Entries
+        </h2>
 
-          <Row style={{marginLeft:'10px', marginRight:'0px'}}>
-           {
-             slacks.slice(0, 9).map(
-               slack => (
-                 <div key={slack.id}>
-                   <main id='card' style={{
-                     width: '85%',
-                     minWidth: '310px',
-                     height: '270px',
-                     paddingBottom: '25px',
-                     margin: '10px',
-                     border: 'solid',
-                     borderRadius: '10px',
-                     borderWidth: '2px',
-                     borderColor: 'grey',
-                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                     marginBottom: '10px',
-                     padding: '20px',
-                     color: 'white'
+        <Row style={{ marginLeft: "10px", marginRight: "0px" }}>
+          {slacks.slice(0, 9).map(slack =>
+            <div key={slack.id}>
+              <main
+                id="card"
+                style={{
+                  width: "85%",
+                  minWidth: "310px",
+                  height: "270px",
+                  paddingBottom: "25px",
+                  margin: "10px",
+                  border: "solid",
+                  borderRadius: "10px",
+                  borderWidth: "2px",
+                  borderColor: "grey",
+                  backgroundColor: "rgba(0, 0, 0, 0.1)",
+                  marginBottom: "10px",
+                  padding: "20px",
+                  color: "white"
+                }}
+              >
+                <div style={{ textAlign: "center" }}>
+                  <h4 className="headings">
+                    {moment(slack.created_at.slice(0, -14)).format("MMM Do, YYYY")}
+                  </h4>
+                </div>
+                <div>
+                  <p className="LineText">Procrastination</p>
+                  <Line
+                    className="Line"
+                    percent={slack.unprod_time}
+                    trailColor="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="2.8"
+                    strokeColor="tomato"
+                  />
+                  <br />
+                </div>
+                <div>
+                  <p className="LineText">Healthy Meals</p>
+                  <Line
+                    className="Line"
+                    percent={slack.prod_time}
+                    trailColor="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="2.8"
+                    strokeColor="palegreen"
+                  />
+                  <br />
+                </div>
+                <div>
+                  <p className="LineText">Sleep Quality</p>
+                  <Line
+                    className="Line"
+                    percent={slack.sleep_time}
+                    trailColor="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="2.8"
+                    strokeColor="#15fbff"
+                  />
+                  <br />
+                </div>
+                <div>
+                  <p className="LineText">Mood</p>
+                  <Line
+                    className="Line"
+                    percent={slack.happy}
+                    trailColor="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="2.8"
+                    strokeColor="#ffff66"
+                  />
+                  <br />
+                </div>
+              </main>
+            </div>
+          )}
 
-                   }}>
-
-                   <div style={{
-                     textAlign: 'center'
-                   }}>
-                   <h4 className='headings' onClick={this.onClick} >{moment(slack.created_at.slice(0,-14)).format("MMM Do, YYYY")}</h4>
-                 </div>
-                      <div>
-                    <p className='LineText'>Procrastination</p>
-                      <Line className='Line' percent={slack.unprod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='tomato'></Line>
-                      <br/>
-                     </div>
-                     <div>
-                   <p className='LineText'>Healthy Meals</p>
-                    <Line className='Line' percent={slack.prod_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='palegreen'></Line>
-                    <br/>
-                     </div>
-                    <p className='LineText'>Sleep Quality</p>
-                     <Line className='Line' percent={slack.sleep_time} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#15fbff'></Line>
-                     <br/>
-                    <p className='LineText'>Mood</p>
-                     <Line className='Line' percent={slack.happy} trailColor='rgba(255, 255, 255, 0.1)' strokeWidth="2.8" strokeColor='#ffff66'></Line>
-                   </main>
-
-                 </div>
-               )
-             )
-           }
-           {
-             total >= 10 ? (
-               [
-           <main style={{
-             width: '200px',
-             minWidth: '310px',
-             height: '270px',
-             textAlign: 'center',
-             paddingBottom: '25px',
-             margin: '10px',
-             border: 'solid',
-             borderRadius: '10px',
-             borderWidth: '2px',
-             borderColor: 'grey',
-             backgroundColor: 'rgba(0, 0, 0, 0.1)',
-             marginBottom: '10px',
-             padding: '20px',
-             color: 'white'
-           }}>
-
-           {
-             singular ? (
-               <h2> {leftOvers} more day not shown...</h2>
-             ) : (
-           <h2> {leftOvers} more days not shown...</h2>
-            )
-           }
-           <br/>
-           <h3>Keep it up, {username}!</h3>
-         </main>
-       ])
-       : (
-         <div></div>
-       )
-     }
-           </Row>
-       </main>
-     )
-
-}
+          {total >= 10
+            ? [
+                <main
+                  style={{
+                    width: "200px",
+                    minWidth: "310px",
+                    height: "270px",
+                    textAlign: "center",
+                    paddingBottom: "25px",
+                    margin: "10px",
+                    border: "solid",
+                    borderRadius: "10px",
+                    borderWidth: "2px",
+                    borderColor: "grey",
+                    backgroundColor: "rgba(0, 0, 0, 0.1)",
+                    marginBottom: "10px",
+                    padding: "20px",
+                    color: "white"
+                  }}
+                >
+                  {singular
+                    ? <h2>{" "}{leftOvers} more day not shown...</h2>
+                    : <h2>{" "}{leftOvers} more days not shown...</h2>}
+                  <br />
+                  <h3>Keep it up, {username}!</h3>
+                </main>
+              ]
+            : <div></div>
+          }
+        </Row>
+      </main>
+    );
+  }
 }
 export default SlackIndexPage;
