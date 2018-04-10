@@ -18,6 +18,7 @@ class SlackIndexPage extends React.Component {
       loading: true,
       value: 0,
       title: 'Slackr',
+      averages: {}
     };
 
     // When using a method as a callback, we must bind
@@ -28,6 +29,8 @@ class SlackIndexPage extends React.Component {
     // creates new function that is copy of the function
     // where `this` is bound permanently.
     this.onClick = this.onClick.bind(this);
+    this.addSlack = this.addSlack.bind(this);
+    this.getAverages = this.getAverages.bind(this);
   }
 
   handleChange = (value) => {
@@ -35,6 +38,8 @@ class SlackIndexPage extends React.Component {
   }
 
   componentDidMount () {
+    this.getAverages()
+
     Slack
       .all()
       .then(
@@ -49,23 +54,24 @@ class SlackIndexPage extends React.Component {
 
 
   componentDidUpdate() {
-    Slack
-      .all()
-      .then(
-        slacks => {
-          this.setState({
-            slacks: slacks,
-            loading: false
-          });
-        }
-      );
     localStorage.setItem(
       this.state.slacks,
       JSON.stringify(this.state.slacks)
     );
   }
 
-
+  getAverages () {
+    Slack
+      .averages()
+      .then(
+        averagesObject => {
+          console.log(averagesObject)
+          this.setState({
+            averages: averagesObject,
+          });
+        }
+      );
+  }
 
   onClick() {
     this.setState({
@@ -76,6 +82,18 @@ class SlackIndexPage extends React.Component {
   updateComponent = (e) => {
     this.forceUpdate()
     }
+
+  addSlack (newSlack) {
+    const {slacks} = this.state;
+    newSlack.author = {full_name: 'Dr. Zoidberg'}
+    this.setState({
+      slacks: [
+        newSlack,
+        ...slacks
+      ]
+    })
+    this.getAverages()
+  }
 
 
 
@@ -115,9 +133,8 @@ class SlackIndexPage extends React.Component {
             marginTop: '20px'
           }}>
 
-          <SlackNewPage action={this.update}/>
-
-          <Averages greet={this.onGreet}/>
+          <SlackNewPage addSlack={this.addSlack}/>
+          <Averages averages={this.state.averages}/>
 
           </div>
 

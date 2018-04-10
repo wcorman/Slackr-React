@@ -29,7 +29,7 @@ class SlackNewPage extends Component {
               )
           });
         } else {
-
+          this.props.addSlack(data)
         }
       })
   }

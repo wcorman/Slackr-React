@@ -3,36 +3,44 @@ import Slider from 'react-rangeslider'
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+const defaultSliderState = {
+  prodValue: 50,
+  unprodValue: 50,
+  sleepValue: 50,
+  happyValue: 50,
+}
+
 class Sliders extends Component {
   constructor(props) {
 
     super(props)
-    this.state = {
-      prodValue: 50,
-      unprodValue: 50,
-      sleepValue: 50,
-      happyValue: 50
-    }
+    this.state = defaultSliderState
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
     // const {onSubmit = () => {}} = props
-    this.onSubmit = props.onSubmit
+    // this.onSubmit = props.onSubmit
   }
+
   handleSliderChange = (value, name) => {
     this.setState({[name]: value})
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.onSubmit({
+
+    const data = new FormData(e.target);
+
+    this.props.onSubmit({
       slacks: {
-        prod_time: this.state.prodValue,
-        unprod_time: this.state.unprodValue,
-        sleep_time: this.state.sleepValue,
-        happy: this.state.happyValue
+      prod_time: this.state.prodValue,
+      unprod_time: this.state.unprodValue,
+      sleep_time: this.state.sleepValue,
+      happy: this.state.happyValue
       }
     })
+
+    this.setState(defaultSliderState)
   }
 
   render() {

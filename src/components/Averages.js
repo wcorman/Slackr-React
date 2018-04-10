@@ -8,7 +8,6 @@ import slackingIcon from './slacking-icon.png'
 import sleepIcon from './sleep_icon.png'
 import happyIcon from './happy_icon.png'
 
-
 class Averages extends React.Component {
   constructor (props) {
     super(props);
@@ -16,35 +15,39 @@ class Averages extends React.Component {
     this.state = {
       slacks: [],
       validationErrors: [],
-      averages: {}
+      averages: props.averages
     };
   }
 
-  componentDidMount () {
-    this.setState(),
-    Slack
-      .averages()
-      .then(
-        averagesObject => {
-          this.setState({
-            averages: averagesObject,
-          });
-        }
-      );
+  componentWillReceiveProps(nextProps) {
+    this.setState({ averages: nextProps.averages });
   }
 
-  componentDidUpdate() {
-    Slack
-      .averages()
-      .then(
-        averagesObject => {
-          this.setState({
-            averages: averagesObject,
-          }
-        );
-      }
-    );
-  }
+  // componentDidMount () {
+  //   this.setState(),
+  //   Slack
+  //     .averages()
+  //     .then(
+  //       averagesObject => {
+  //         this.setState({
+  //           averages: averagesObject,
+  //         });
+  //       }
+  //     );
+  // }
+
+  // componentDidUpdate() {
+  //   Slack
+  //     .averages()
+  //     .then(
+  //       averagesObject => {
+  //         this.setState({
+  //           averages: averagesObject,
+  //         }
+  //       );
+  //     }
+  //   );
+  // }
 
   render () {
     return (
