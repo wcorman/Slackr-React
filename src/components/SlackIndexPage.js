@@ -119,7 +119,7 @@ class SlackIndexPage extends React.Component {
               >
                 <div style={{ textAlign: "center" }}>
                   <h4 className="headings">
-                    {moment(slack.created_at.slice(0, -14)).format("MMM Do, YYYY")}
+                    {moment(slack.created_at).format("MMM Do, YYYY")}
                   </h4>
                 </div>
                 <div>

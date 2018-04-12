@@ -103,7 +103,7 @@ class Sliders extends Component {
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <p style={{ fontSize: "19px", color: "#15fbff" }}>
+          <p style={{ fontSize: "19px", color: "#ffff66" }}>
             Mood
           </p>
           <Slider
