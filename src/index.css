@@ -63,6 +63,9 @@ background-image: url("./pattern.png") !important;
 .headings {
   font-family: 'Ubuntu', sans-serif;
 }
+#timeLeft{
+color:orange
+}
 #averages{
   display: 'flex';
   justify-content: space-around;

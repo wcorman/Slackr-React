@@ -32,7 +32,7 @@ class SlackNewPage extends Component {
   }
 
   createSlack(slackParams) {
-    const {getslacks, loading} = this.state;
+    let {getslacks, loading} = this.state;
 
     switch (this.state.getslacks.length == 0) {
       case true:
@@ -66,23 +66,54 @@ class SlackNewPage extends Component {
           });
         }, 12)
 
+        setTimeout(() => {
+          let {getslacks, loading} = this.state;
+          let latest = getslacks[0]
+          let currentTime = Moment(Date()).format()
+          let timeout = Moment(latest.created_at).add(20, 'hours').format()
+          let elapsed = (Date() - latest.created_at)
+          let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
+          let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+          let timeLeftString = timeLeftNum.toString()
+          console.log(timeLeftString)
+          this.setState({
+            timeout: timeLeftString,
+          });
+        }, 500)
+
           console.log("User's first post");
           break;
+
       case false:
         let latest = getslacks[0]
         let currentTime = Moment(Date()).format()
         let timeout = Moment(latest.created_at).add(20, 'hours').format()
         let elapsed = (Date() - latest.created_at)
-        // console.log(latest.created_at)
-        // console.log(Date().slice(4,-15))
         let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
         console.log('Current time: ' + currentTime)
         console.log('Timeout till: ' + timeout)
         console.log('time left till next entry: ' + timeLeft + ' Hours')
-        console.log('Apples are $0.32 a pound.');
+        let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+        console.log(timeLeftNum)
 
         switch ((Moment(currentTime).isAfter(timeout))) {
           case false:
+
+
+            let {getslacks, loading} = this.state;
+            let latest = getslacks[0]
+            let currentTime = Moment(Date()).format()
+            let timeout = Moment(latest.created_at).add(20, 'hours').format()
+            let elapsed = (Date() - latest.created_at)
+            let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
+            let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+            let timeLeftString = timeLeftNum.toString()
+            console.log(timeLeftString)
+            this.setState({
+              timeout: timeLeftString,
+            });
+
+
             break;
           case true:
           Slack
@@ -102,6 +133,9 @@ class SlackNewPage extends Component {
               } else {
                 this.props.addSlack(data)
               }
+            });
+            this.setState({
+              timeout: timeLeftString,
             });
             console.log('SUCCESS')
             break;
@@ -134,7 +168,6 @@ class SlackNewPage extends Component {
         });
       });
   }
-
   render() {
 
     return (
@@ -143,9 +176,24 @@ class SlackNewPage extends Component {
         style={{
           margin: "0 1rem",
           marginTop: "10px",
-          width: "20vw"
+          width: "27vw"
         }}
       >
+        {this.state.timeout !== ''
+          ? [
+              <main
+                style={{
+
+                }}
+              >
+                {Number((this.state.timeout)) > 10
+                  ? <p style={{color:'orange', fontSize:'15px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>
+                  : <p style={{color:'#15fbff'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
+              </main>
+            ]
+          : <div></div>
+        }
+
         <Sliders
           errors={this.state.validationErrors}
           onSubmit={this.createSlack}
