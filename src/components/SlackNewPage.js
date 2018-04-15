@@ -11,11 +11,11 @@ class SlackNewPage extends Component {
       validationErrors: [],
       slacks: {},
       getslacks: [],
-      timeout: ''
+      timeout: '',
+      success: ''
     };
     this.createSlack = this.createSlack.bind(this);
     this.getslacks = this.getslacks.bind(this);
-
   }
 
   componentDidMount() {
@@ -61,25 +61,11 @@ class SlackNewPage extends Component {
           .then(slacks => {
             this.setState({
               getslacks: slacks,
+              success: 'nice',
               loading: false
             });
           });
-        }, 12)
-
-        setTimeout(() => {
-          let {getslacks, loading} = this.state;
-          let latest = getslacks[0]
-          let currentTime = Moment(Date()).format()
-          let timeout = Moment(latest.created_at).add(20, 'hours').format()
-          let elapsed = (Date() - latest.created_at)
-          let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-          let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
-          let timeLeftString = timeLeftNum.toString()
-          console.log(timeLeftString)
-          this.setState({
-            timeout: timeLeftString,
-          });
-        }, 500)
+        }, 150)
 
           console.log("User's first post");
           break;
@@ -95,51 +81,130 @@ class SlackNewPage extends Component {
         console.log('time left till next entry: ' + timeLeft + ' Hours')
         let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
         console.log(timeLeftNum)
+        console.log('before:', timeLeftNum > 0)
+        console.log('before:', timeLeftNum < 0)
+        console.log('before:', timeLeftNum)
 
-        switch ((Moment(currentTime).isAfter(timeout))) {
-          case false:
-
-
-            let {getslacks, loading} = this.state;
-            let latest = getslacks[0]
-            let currentTime = Moment(Date()).format()
-            let timeout = Moment(latest.created_at).add(20, 'hours').format()
-            let elapsed = (Date() - latest.created_at)
-            let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-            let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
-            let timeLeftString = timeLeftNum.toString()
-            console.log(timeLeftString)
-            this.setState({
-              timeout: timeLeftString,
-            });
-
-
-            break;
-          case true:
+        if (timeLeftNum < 0.01) {
           Slack
-            .create(slackParams)
-            .then(data => {
-              if (data.errors) {
-                this.setState({
-                  getslacks: [],
-                  slacks: {},
-                  errors: [{
-                    message: 'Come back tomorrow to make another post!'
-                  }],
-                  // validationErrors: data.errors.filter(
-                  //   e => e.type === "ActiveRecord::RecordInvalid"
-                  // )
+              .create(slackParams)
+              .then(data => {
+                if (data.errors) {
+                  this.setState({
+                    getslacks: [],
+                    slacks: {},
+                    errors: [{
+                      message: 'Come back tomorrow to make another post!'
+                    }],
+                    // validationErrors: data.errors.filter(
+                    //   e => e.type === "ActiveRecord::RecordInvalid"
+                    // )
+                  });
+                } else {
+                  this.props.addSlack(data)
+                }
+              });
+
+              setTimeout(() => {
+                Slack
+                .all()
+                .then(slacks => {
+                  console.log(slacks.length)
+                  this.setState({
+                    getslacks: slacks,
+                    loading: false
+                  });
                 });
-              } else {
-                this.props.addSlack(data)
-              }
-            });
-            this.setState({
-              timeout: timeLeftString,
-            });
-            console.log('SUCCESS')
-            break;
+              }, 150)
+              let latest = getslacks[0]
+              let currentTime = Moment(Date()).format()
+              let timeout = Moment(latest.created_at).add(20, 'hours').format()
+              let elapsed = (Date() - latest.created_at)
+              let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
+              console.log('Current time: ' + currentTime)
+              console.log('Timeout till: ' + timeout)
+              console.log('time left till next entry: ' + timeLeft + ' Hours')
+              let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+              console.log(timeLeftNum)
+              console.log('before:', timeLeftNum > 0)
+              console.log('before:', timeLeftNum < 0)
+              console.log('before:', timeLeftNum)
+              this.setState({
+                timeout: '',
+                success: 'nice',
+              });
+              console.log('SUCCESS')
+        } else {
+              let {getslacks, loading} = this.state;
+              let latest = getslacks[0]
+              let currentTime = Moment(Date()).format()
+              let timeout = Moment(latest.created_at).add(20, 'hours').format()
+              let elapsed = (Date() - latest.created_at)
+              let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
+              let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+              let timeLeftString = timeLeftNum.toString()
+              console.log(timeLeftNum)
+              console.log('THIS SHIT BETTER START WORKING...')
+              console.log(Moment(currentTime))
+              console.log(typeof timeLeftNum)
+              console.log('after:', timeLeftNum > 0)
+              console.log('after:', timeLeftNum < 0)
+              console.log('after:', timeLeftNum)
+              this.setState({
+                timeout: timeLeftString,
+                success: '',
+              });
+
         }
+        // switch (timeLeftNum < 19.99) {
+        //   case false:
+        //
+        //     let {getslacks, loading} = this.state;
+        //     let latest = getslacks[0]
+        //     let currentTime = Moment(Date()).format()
+        //     let timeout = Moment(latest.created_at).add(20, 'hours').format()
+        //     let elapsed = (Date() - latest.created_at)
+        //     let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
+        //     let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
+        //     let timeLeftString = timeLeftNum.toString()
+        //     console.log(timeLeftNum)
+        //     console.log('THIS SHIT BETTER START WORKING...')
+        //     console.log(Moment(currentTime))
+        //     console.log(typeof timeLeftNum)
+        //     console.log('after:', timeLeftNum > 0)
+        //     console.log('after:', timeLeftNum < 0)
+        //     console.log('after:', timeLeftNum)
+        //     this.setState({
+        //       timeout: timeLeftString,
+        //     });
+        //
+        //     break;
+        //
+        //   case true:
+        //   Slack
+        //     .create(slackParams)
+        //     .then(data => {
+        //       if (data.errors) {
+        //         this.setState({
+        //           getslacks: [],
+        //           slacks: {},
+        //           errors: [{
+        //             message: 'Come back tomorrow to make another post!'
+        //           }],
+        //           // validationErrors: data.errors.filter(
+        //           //   e => e.type === "ActiveRecord::RecordInvalid"
+        //           // )
+        //         });
+        //       } else {
+        //         this.props.addSlack(data)
+        //       }
+        //     });
+        //     this.setState({
+        //       timeout: timeLeftString,
+        //     });
+        //     console.log('SUCCESS')
+        //     break;
+        // }
           break;
     }
 
@@ -181,14 +246,20 @@ class SlackNewPage extends Component {
       >
         {this.state.timeout !== ''
           ? [
-              <main
-                style={{
-
-                }}
-              >
+              <main>
                 {Number((this.state.timeout)) > 10
-                  ? <p style={{color:'orange', fontSize:'15px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>
-                  : <p style={{color:'#15fbff'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
+                  ? <div><p style={{color:'orange', fontSize:'15px', margin:'0px'}}>One per day please!</p>
+                    <p style={{color:'orange', fontSize:'15px', margin:'0px'}}>{this.state.timeout} hours left until you can make a new entry..</p>
+                    </div>
+                  : <p style={{color:'#15fbff', margin:'0px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
+              </main>
+            ]
+          : <div></div>
+        }
+        {this.state.success !== ''
+          ? [
+              <main>
+                <div><p style={{color:'palegreen', fontSize:'17px', margin:'0px'}}><b> Submitted!</b></p> <p style={{color:'palegreen', fontSize:'15px', margin:'0px'}}>Remember to be honest with yourself. Come back tomorrow to keep the ball rolling!</p></div>
               </main>
             ]
           : <div></div>
