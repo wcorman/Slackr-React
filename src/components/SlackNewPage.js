@@ -251,7 +251,7 @@ class SlackNewPage extends Component {
                   ? <div><p style={{color:'orange', fontSize:'15px', margin:'0px'}}>One per day please!</p>
                     <p style={{color:'orange', fontSize:'15px', margin:'0px'}}>{this.state.timeout} hours left until you can make a new entry..</p>
                     </div>
-                  : <p style={{color:'#15fbff', margin:'0px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
+                  : <p style={{color:'#ffff66', margin:'0px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
               </main>
             ]
           : <div></div>

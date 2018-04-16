@@ -28,7 +28,7 @@ class Sliders extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const data = new FormData(e.target);
+    // var data = new FormData(e.target);
 
     this.props.onSubmit({
       slacks: {

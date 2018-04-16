@@ -25,7 +25,7 @@ class Trends extends React.Component {
 
           const datesArray = []
             trendsObject.forEach(function(entry) {
-              const dateSliced = entry.created_at.slice(0,-14)
+              const dateSliced = entry.created_at.slice(0,-19)
                 datesArray.push(dateSliced)
                 });
                 console.log(datesArray);
@@ -116,6 +116,15 @@ class Trends extends React.Component {
 
         return (
           <div className="chart">
+
+            {this.state.trends.length < 2
+              ? [
+                  <main>
+                    <div><p style={{color:'palegreen', fontSize:'17px', margin:'0px', textAlign: 'center', margin:'8px'}}><b>Keep comin back! You need at least 2 entries to start seeing your trend..</b></p></div>
+                  </main>
+                ]
+              : <div></div>
+            }
             <Line
             	data={this.state.chartData}
 
