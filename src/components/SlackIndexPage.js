@@ -91,10 +91,39 @@ class SlackIndexPage extends React.Component {
         </main>
 
         <hr />
+        {total == 0
+          ? [
+            <main
+              style={{
+                width: "99vw",
+                minWidth: "310px",
+                height: "270px",
+                textAlign: "center",
+                paddingBottom: "25px",
+                margin: "10px",
+                border: "solid",
+                borderRadius: "10px",
+                borderWidth: "2px",
+                borderColor: "grey",
+                backgroundColor: "rgba(0, 0, 0, 0.08)",
+                marginBottom: "10px",
+                padding: "20px",
+                color: "white"
+              }}
+            >
+              <h2 style={{color: 'palegreen'}}>Welcome to Slackr!</h2>
+              <h4>Slackr is a tool to help you keep track of your daily routines and gain a better understanding of how they correlate with your mood.</h4>
+              <h4>Everyone is different, the trick is to be honest with yourself in gauging how <i>YOU</i> think your day went.</h4>
+              <br/>
+              <h4><i>Get started with your first entry by adjusting the sliders above and hitting submit!</i></h4>
+            </main>
+          ]
+          :
+           <h2 className="headings" style={{ color: "white", marginTop: "15px", marginLeft: "16px" }}>
+            Recent Entries
+           </h2>
+        }
 
-        <h2 className="headings" style={{ color: "white", marginTop: "15px", marginLeft: "16px" }}>
-          Recent Entries
-        </h2>
 
         <Row style={{ marginLeft: "10px", marginRight: "0px" }}>
           {slacks.slice(0, 9).map(slack =>

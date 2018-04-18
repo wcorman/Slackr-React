@@ -1,4 +1,4 @@
-const DOMAIN = 'localhost:3000';
+const DOMAIN = 'ec2-54-186-182-218.us-west-2.compute.amazonaws.com:3000';
 const API_PREFIX = '/api/v1';
 const BASE_URL = `http://${DOMAIN}${API_PREFIX}`;
 

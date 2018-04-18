@@ -247,11 +247,12 @@ class SlackNewPage extends Component {
         {this.state.timeout !== ''
           ? [
               <main>
-                {Number((this.state.timeout)) > 10
-                  ? <div><p style={{color:'orange', fontSize:'15px', margin:'0px'}}>One per day please!</p>
-                    <p style={{color:'orange', fontSize:'15px', margin:'0px'}}>{this.state.timeout} hours left until you can make a new entry..</p>
+                {Number((this.state.timeout)) > 8
+                ? <div><p style={{ color: 'orange', fontSize: '15px', margin: '0px' }}> <b>One per day please!</b> </p>
+                    <p style={{color:'orange', fontSize:'15px', margin:'0px'}}> <b>{this.state.timeout} hours</b> left until you can make a new entry..</p>
                     </div>
-                  : <p style={{color:'#ffff66', margin:'0px'}}>Come back soon! {this.state.timeout} hours left until you can make a new entry..</p>}
+                : <p style={{ color: '#ffff66', margin: '0px' }}> <div><b>Come back soon!</b></div>
+                  <b> {this.state.timeout} hours</b> left until you can make a new entry..</p>}
               </main>
             ]
           : <div></div>
