@@ -111,8 +111,8 @@ class SlackIndexPage extends React.Component {
                 color: "white"
               }}
             >
-              <h2 style={{color: 'palegreen'}}>Welcome to Slackr!</h2>
-              <h4>Slackr is a tool to help you keep track of your daily routines and gain a better understanding of how they correlate with your mood.</h4>
+              <h2 style={{color: 'palegreen'}}>Hey {this.props.user.first_name}, welcome to Slackr!</h2>
+              <h4><i>Slackr</i> is a tool to help you keep track of your daily habits and gain a better understanding of how they correlate with your mood.</h4>
               <h4>Everyone is different, the trick is to be honest with yourself in gauging how <i>YOU</i> think your day went.</h4>
               <br/>
               <h4><i>Get started with your first entry by adjusting the sliders above and hitting submit!</i></h4>

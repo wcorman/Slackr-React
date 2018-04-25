@@ -34,7 +34,7 @@ function NavBar (props) {
               </div>
               <nav className="NavBar" style={{height:'55px'}}>
 
-                <NavLink className='navLinks' exact to="/slacks"><img src ={homeLogo} height='37' alt="Slackr Logo"/></NavLink>
+                <NavLink className='navLinks' exact to="/home"><img src ={homeLogo} height='37' alt="Slackr Logo"/></NavLink>
                 <NavLink className='navLinks center' exact to="/trends"><img src ={trendLogo} height='39' alt="Slackr Logo"/></NavLink>
 
                   <a style={{marginRight:'15px'}} className='nameplace' key="1">Hello, {user.first_name}</a>

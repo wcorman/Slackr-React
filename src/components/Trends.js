@@ -112,18 +112,29 @@ class Trends extends React.Component {
     }
 
       render () {
-        const username = this.props.user.first_name+' '+this.props.user.last_name+ "'s lifestyle trend"
+        const username = "Your lifestyle trend"
 
         return (
           <div className="chart">
 
             {this.state.trends.length < 2
               ? [
+                 // If LESS than 2 entries, message is shown:
                   <main>
-                    <div><p style={{color:'palegreen', fontSize:'17px', margin:'0px', textAlign: 'center', margin:'8px'}}><b>Keep comin back! You need at least 2 entries to start seeing your trend..</b></p></div>
+                    <div>
+                      <p style={{color:'palegreen', 
+                                  fontSize:'17px', 
+                                  margin:'0px', 
+                                  textAlign: 'center', 
+                                  margin:'8px'}}>
+                         <b>Keep comin back! You need at least 2 entries to start seeing your trend..</b>
+                      </p>
+                    </div>
                   </main>
                 ]
-              : <div></div>
+              : 
+            // If MORE than 2 entries, no message is shown:
+              <div></div>
             }
             <Line
             	data={this.state.chartData}

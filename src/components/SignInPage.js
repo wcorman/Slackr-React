@@ -3,6 +3,7 @@ import { Token } from '../lib/requests';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FormErrors from './FormErrors';
+import Tappable from 'react-tappable';
 
 class SignInPage extends Component {
   constructor (props) {
@@ -32,7 +33,7 @@ class SignInPage extends Component {
           // because this component is rendered by a
           // route component.
           // (i.e. <Route route="/sign_in" component={SignInPage} />)
-          window.location.href = 'http://localhost:3001/slacks'
+          window.location.href = 'http://slackr.ca.s3-website-us-west-2.amazonaws.com/home'
         } else {
           this.setState({
             errors: [{
@@ -69,10 +70,12 @@ class SignInPage extends Component {
           <br/>
 
           <div>
+            <Tappable onTap={this.createToken}>
             <MuiThemeProvider>
-            <RaisedButton label="Sign In" primary={true} style={{color:'black'}} type='submit' value='Sign In'>
+            <RaisedButton class="signInAndUp" label="Sign In" primary={true} style={{color:'black'}} type='submit' value='Sign In'>
             </RaisedButton>
             </MuiThemeProvider>
+            </Tappable>
           </div>
         </form>
       </main>

@@ -9,10 +9,7 @@ function SlackForm (props) {
     // event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    // See key => values from formData object
-    // console.log(
-    //   Array.from(formData.entries())
-    // )
+
     onSubmit({
       slacks: {
       prod_time: formData.get('prodTime'),

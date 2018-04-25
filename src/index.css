@@ -45,6 +45,10 @@ background-image: url("./pattern.png") !important;
   margin:10px
 }
 
+.signInAndUp {
+  cursor: pointer;
+}
+
 .signUpInput {
     width: 80%;
     /* min-width: 220px; */

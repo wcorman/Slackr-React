@@ -76,14 +76,7 @@ class SlackNewPage extends Component {
         let timeout = Moment(latest.created_at).add(20, 'hours').format()
         let elapsed = (Date() - latest.created_at)
         let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-        console.log('Current time: ' + currentTime)
-        console.log('Timeout till: ' + timeout)
-        console.log('time left till next entry: ' + timeLeft + ' Hours')
         let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
-        console.log(timeLeftNum)
-        console.log('before:', timeLeftNum > 0)
-        console.log('before:', timeLeftNum < 0)
-        console.log('before:', timeLeftNum)
 
         if (timeLeftNum < 0.01) {
           Slack
@@ -121,19 +114,13 @@ class SlackNewPage extends Component {
               let timeout = Moment(latest.created_at).add(20, 'hours').format()
               let elapsed = (Date() - latest.created_at)
               let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-              console.log('Current time: ' + currentTime)
-              console.log('Timeout till: ' + timeout)
-              console.log('time left till next entry: ' + timeLeft + ' Hours')
               let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
-              console.log(timeLeftNum)
-              console.log('before:', timeLeftNum > 0)
-              console.log('before:', timeLeftNum < 0)
-              console.log('before:', timeLeftNum)
+
               this.setState({
                 timeout: '',
                 success: 'nice',
               });
-              console.log('SUCCESS')
+              
         } else {
               let {getslacks, loading} = this.state;
               let latest = getslacks[0]
@@ -143,87 +130,15 @@ class SlackNewPage extends Component {
               let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
               let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
               let timeLeftString = timeLeftNum.toString()
-              console.log(timeLeftNum)
-              console.log('THIS SHIT BETTER START WORKING...')
-              console.log(Moment(currentTime))
-              console.log(typeof timeLeftNum)
-              console.log('after:', timeLeftNum > 0)
-              console.log('after:', timeLeftNum < 0)
-              console.log('after:', timeLeftNum)
+
               this.setState({
                 timeout: timeLeftString,
                 success: '',
               });
-
-        }
-        // switch (timeLeftNum < 19.99) {
-        //   case false:
-        //
-        //     let {getslacks, loading} = this.state;
-        //     let latest = getslacks[0]
-        //     let currentTime = Moment(Date()).format()
-        //     let timeout = Moment(latest.created_at).add(20, 'hours').format()
-        //     let elapsed = (Date() - latest.created_at)
-        //     let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-        //     let timeLeftNum = parseFloat(parseFloat(timeLeft).toFixed(2))
-        //     let timeLeftString = timeLeftNum.toString()
-        //     console.log(timeLeftNum)
-        //     console.log('THIS SHIT BETTER START WORKING...')
-        //     console.log(Moment(currentTime))
-        //     console.log(typeof timeLeftNum)
-        //     console.log('after:', timeLeftNum > 0)
-        //     console.log('after:', timeLeftNum < 0)
-        //     console.log('after:', timeLeftNum)
-        //     this.setState({
-        //       timeout: timeLeftString,
-        //     });
-        //
-        //     break;
-        //
-        //   case true:
-        //   Slack
-        //     .create(slackParams)
-        //     .then(data => {
-        //       if (data.errors) {
-        //         this.setState({
-        //           getslacks: [],
-        //           slacks: {},
-        //           errors: [{
-        //             message: 'Come back tomorrow to make another post!'
-        //           }],
-        //           // validationErrors: data.errors.filter(
-        //           //   e => e.type === "ActiveRecord::RecordInvalid"
-        //           // )
-        //         });
-        //       } else {
-        //         this.props.addSlack(data)
-        //       }
-        //     });
-        //     this.setState({
-        //       timeout: timeLeftString,
-        //     });
-        //     console.log('SUCCESS')
-        //     break;
-        // }
-          break;
-    }
-
-
-  // if (Moment(currentTime).isAfter(timeout)) {
-  //   let currentTime = Moment(Date()).format()
-  //   let timeout = Moment(latest.created_at).add(20, 'hours').format()
-  //   let latest = getslacks[0]
-  //   let elapsed = (Date() - latest.created_at)
-  //   // console.log(latest.created_at)
-  //   // console.log(Date().slice(4,-15))
-  //   let timeLeft = Moment(timeout).diff(currentTime, 'hours', true)
-  //   console.log('Current time: ' + currentTime)
-  //   console.log('Timeout till: ' + timeout)
-  //   console.log('time left till next entry: ' + timeLeft + ' Hours')
-
-
-    // }
+         }
+      }
   }
+
   getslacks() {
     Slack
       .all()
@@ -233,6 +148,7 @@ class SlackNewPage extends Component {
         });
       });
   }
+  
   render() {
 
     return (

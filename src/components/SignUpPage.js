@@ -6,6 +6,7 @@ import FormErrors from './FormErrors';
 import { NavLink } from 'react-router-dom';
 import logo from './logosvg.svg'
 import logoUnderline from './logo_underline.png'
+import Tappable from 'react-tappable';
 
 function SignUpPage(props) {
   const { onSignUp = () => {} } = props;
@@ -24,7 +25,8 @@ function SignUpPage(props) {
         const jwt = data.jwt;
         localStorage.setItem('jwt', jwt);
         onSignUp();
-        props.history.push('/slacks');
+        window.location.href = 'http://slackr.ca.s3-website-us-west-2.amazonaws.com/home'
+        // props.history.push('/home');
       }
     });
   }
@@ -78,9 +80,13 @@ function SignUpPage(props) {
           <input className="signUpInput" type="password" name="password_confirmation" id="password_confirmation" />
         </div>
         <br/>
+      
+      <Tappable onTap={handleSubmit}>
         <MuiThemeProvider>
-          <RaisedButton label="Sign Up" primary={true} style={{color:'black', width:'25%', marginBottom:'15px'}} type="submit" value="Sign Up" />
+          <RaisedButton class="signInAndUp" label="Sign Up" primary={true} style={{color:'black', width:'25%', marginBottom:'15px'}} type="submit" value="Sign Up" />
         </MuiThemeProvider>
+      </Tappable>
+
         <br/>
         <NavLink style={{color:'#15fbff', fontSize:'16px', fontFamily:'Roboto'}} className='' exact to="/"><i>Already have an account?</i></NavLink>
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Slack } from '../lib/requests';
 import { Circle } from 'rc-progress';
 import { Container, Row, Col } from 'reactstrap';
-// import prodIcon from './prod_icon.png'
 import foodIcon from './food-icon.png'
 import slackingIcon from './slacking-icon.png'
 import sleepIcon from './sleep_icon.png'
@@ -47,7 +46,6 @@ class Averages extends React.Component {
                 margin: "5px"
               }}
             >
-              {/* <div><p>Productive Time:</p></div> */}
               <div
                 id="percent1"
                 className="averageLabel"
@@ -91,7 +89,6 @@ class Averages extends React.Component {
                 margin: "5px"
               }}
             >
-              {/* <div><p>Unproductive Time:</p></div> */}
               <div
                 id="percent2"
                 className="averageLabel"
@@ -134,7 +131,6 @@ class Averages extends React.Component {
                 margin: "5px"
               }}
             >
-              {/* <div><p>Sleep Quality:</p></div> */}
               <div
                 id="percent3"
                 className="averageLabel"
@@ -177,7 +173,6 @@ class Averages extends React.Component {
                 margin: "5px"
               }}
             >
-              {/* <div><p>Happy Level:</p></div> */}
               <div
                 id="percent4"
                 className="averageLabel"

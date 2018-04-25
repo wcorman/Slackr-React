@@ -71,7 +71,7 @@ class LandingPage extends React.Component {
           }} src ={logoShadow} alt="Slackr Logo"/>
         <div style={{backgroundColor:'rgba(255,255,255, 0.1)'}}>
           <Collapse style={{alignContent:'center', fontSize:'20px', marginBottom: '20px'}}  onChange={callback}>
-            <Panel  style={{backgroundColor:'rgba(255,255,255, 0.1)'}} header="Sign In" key="1">
+              <Panel style={{ backgroundColor: 'rgba(255,255,255, 0.1)'}} header="Sign In" key="1">
               <SignInPage props={this.props.history}/>
             </Panel>
           </Collapse>

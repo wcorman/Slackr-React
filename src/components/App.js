@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 
 import jwtDecode from 'jwt-decode';
 import {
-  // When doing named imports, you can `as` to rename
-  // an import in context of a file. As shown, below:
   BrowserRouter as Router,
   Route,
   Switch
@@ -17,11 +15,7 @@ import NavBar from './NavBar';
 import AuthRoute from './AuthRoute';
 import { UnauthRoute } from 'react-router-auth'
 
-// When building React applications, we create
-// a root component that is the ancestor to all the
-// components that we create. And, we render that
-// component on the page with `ReactDOM.render()`.
-// For this application, the `App` serves that role.
+
 class App extends Component {
 
   constructor (props) {
@@ -80,9 +74,9 @@ class App extends Component {
               user={user}
               isAuthenticated={this.isSignedIn()}
               exact
-              path="/slacks"
+              path="/home"
               component={SlackIndexPage}
-              redirectTo="/slacks"
+              redirectTo="/home"
 
             />
 
@@ -90,10 +84,9 @@ class App extends Component {
               exact
               path="/"
               component={LandingPage}
-              redirectTo="/slacks"
+              redirectTo="/home"
               authenticated={this.state.user}
             />
-            {/* <Route path="/slacks/new" component={SlackNewPage} /> */}
 
             <AuthRoute
               user={user}
@@ -102,18 +95,7 @@ class App extends Component {
               path="/trends"
               component={Trends}
             />
-            {/* <Route path="/sign_in" component={SignInPage} /> */}
-            {/* <Route
-              path="/sign_in"
-              render={
-                props => (
-                  <SignInPage
-                    {...props}
-                    onSignIn={this.signIn}
-                  />
-                )
-              }
-            /> */}
+
             <Route
               path="/sign_up"
               render={props => <SignUpPage {...props} onSignUp={this.signIn} />}
