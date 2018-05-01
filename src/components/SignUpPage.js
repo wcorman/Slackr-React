@@ -25,7 +25,7 @@ function SignUpPage(props) {
         const jwt = data.jwt;
         localStorage.setItem('jwt', jwt);
         onSignUp();
-        window.location.href = 'http://slackr.ca.s3-website-us-west-2.amazonaws.com/home'
+        window.location.href = 'http://slackr.ca/home'
         // props.history.push('/home');
       }
     });

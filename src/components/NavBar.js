@@ -13,7 +13,7 @@ function NavBar (props) {
   const handleSignOut = event => {
     event.preventDefault();
     onSignOut();
-    window.location.href = ('http://slackr.ca.s3-website-us-west-2.amazonaws.com/')
+    window.location.href = ('http://slackr.ca')
   }
 
   return (
